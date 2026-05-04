@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Reporte Semanal · Producto · BCI · W18 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#15183A;--navy-soft:#2A2D55;--navy-muted:#5A5D7E;--navy-faint:#9598B0;--yellow:#F9D00A;--yellow-deep:#705D00;--yellow-soft:#FDD414;--surface:#FBF8FF;--surface-low:#F4F2FF;--surface-lowest:#FFFFFF;--surface-variant:#ECE9F7;--surface-high:#EDEAFB;--teal:#25616F;--teal-soft:#DBEEF1;--blue:#2C5889;--blue-soft:#DDE7F4;--green:#2F7A5B;--green-soft:#DEEFE6;--red:#B43A4A;--red-soft:#F6DEE2;--shadow-soft:0 12px 32px rgba(21,24,58,.06);--shadow-medium:0 18px 48px rgba(21,24,58,.08);--radius-xl:1.5rem;--radius-lg:1.125rem;--radius-md:.75rem;--radius-pill:999px}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--surface);color:var(--navy);font-family:'Jost',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;letter-spacing:-.005em}
+  a{color:var(--blue);text-decoration:none;transition:opacity .15s}a:hover{opacity:.7}
+  .page{max-width:1320px;margin:0 auto;padding:32px 40px 80px}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(255,255,255,.65);backdrop-filter:blur(16px);border-radius:var(--radius-pill);box-shadow:var(--shadow-soft);margin-bottom:24px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand-coin{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#FDD414,#F9D00A);display:grid;place-items:center;font-weight:700;color:var(--navy);font-size:15px;box-shadow:inset 0 -2px 0 rgba(112,93,0,.18),0 4px 12px rgba(249,208,10,.35)}
+  .brand-name{font-weight:600;letter-spacing:-.02em;font-size:17px}
+  .brand-sub{color:var(--navy-muted);font-size:13px;margin-left:4px}
+  .nav-group{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+  .period-nav{display:flex;gap:6px;background:var(--surface-variant);padding:5px;border-radius:var(--radius-pill)}
+  .period-btn{padding:6px 16px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;text-decoration:none;color:var(--navy-muted);transition:all .15s}
+  .period-btn.active{background:var(--navy);color:#fff}
+  .role-nav{display:flex;gap:6px;background:rgba(255,255,255,.7);backdrop-filter:blur(16px);padding:5px;border-radius:var(--radius-pill);box-shadow:var(--shadow-soft)}
+  .role-btn{padding:6px 16px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;text-decoration:none;color:var(--navy-muted);transition:all .15s}
+  .role-btn.active{background:var(--navy);color:#fff}
+  .role-btn:hover:not(.active){background:var(--surface-variant);opacity:1}
+  .hero{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;margin-bottom:32px}
+  .hero-card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:36px 40px;box-shadow:var(--shadow-soft);position:relative;overflow:hidden}
+  .hero-card::after{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(249,208,10,.18),transparent 70%);pointer-events:none}
+  .badges{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+  .badge{padding:6px 14px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+  .badge-yellow{background:var(--yellow);color:var(--navy)}.badge-blue{background:var(--blue-soft);color:var(--blue)}.badge-green{background:var(--green-soft);color:var(--green)}
+  .hero h1{font-size:3rem;font-weight:700;letter-spacing:-.035em;line-height:1.05;margin-bottom:12px}
+  .hero-subtitle{color:var(--navy-muted);font-size:17px;margin-bottom:8px}
+  .hero-meta{color:var(--navy-faint);font-size:13px;text-transform:uppercase;letter-spacing:.05em;font-weight:500}
+  .kpi-strip{background:var(--navy);color:#FFF;border-radius:var(--radius-xl);padding:32px;box-shadow:var(--shadow-medium);display:grid;grid-template-columns:repeat(2,1fr);gap:24px;position:relative;overflow:hidden}
+  .kpi-strip::before{content:'';position:absolute;bottom:-30px;left:-30px;width:120px;height:120px;border-radius:50%;background:var(--yellow);opacity:.12}
+  .kpi{position:relative}
+  .kpi-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;color:rgba(255,255,255,.55);margin-bottom:8px}
+  .kpi-value{font-size:2.25rem;font-weight:700;letter-spacing:-.03em;line-height:1}
+  .kpi-delta{margin-top:6px;font-size:13px;font-weight:500;color:var(--yellow)}
+  .kpi-sub{color:rgba(255,255,255,.6);font-size:13px;margin-top:4px}
+  .section{margin-bottom:40px}
+  .section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;padding:0 4px}
+  .section-title{font-size:1.5rem;font-weight:700;letter-spacing:-.025em}
+  .section-eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:600;color:var(--navy-muted);margin-bottom:6px}
+  .section-sub{color:var(--navy-muted);font-size:14px}
+  .card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:28px 32px;box-shadow:var(--shadow-soft)}
+  .card h3{font-size:1.0625rem;font-weight:600;letter-spacing:-.015em;margin-bottom:14px}
+  .grid{display:grid;gap:24px}.grid-2{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(3,1fr)}.grid-4{grid-template-columns:repeat(4,1fr)}
+  .stat-card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px 26px;box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:8px}
+  .stat-eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--navy-muted)}
+  .stat-num{font-size:2.5rem;font-weight:700;letter-spacing:-.035em;line-height:1}
+  .stat-foot{font-size:13px;color:var(--navy-muted)}
+  /* Daily trend */
+  .trend-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;align-items:end;padding:24px 0 8px}
+  .trend-day{display:flex;flex-direction:column;align-items:center;gap:8px}
+  .trend-bar-wrap{width:100%;display:flex;flex-direction:column;align-items:center;gap:4px;height:120px;justify-content:flex-end}
+  .trend-bar{width:100%;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--blue),var(--teal));min-height:4px;transition:height .3s}
+  .trend-bar.today{background:linear-gradient(180deg,var(--yellow),var(--yellow-deep))}
+  .trend-val{font-size:13px;font-weight:700;color:var(--navy)}
+  .trend-label{font-size:11px;color:var(--navy-muted);font-weight:600;text-transform:uppercase}
+  .trend-conv{font-size:10px;color:var(--navy-muted)}
+  /* Table */
+  .table-wrap{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px 28px;box-shadow:var(--shadow-soft)}
+  table.editorial{width:100%;border-collapse:collapse;font-size:14px}
+  table.editorial thead th{text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--navy-muted);padding:12px 14px}
+  table.editorial tbody td{padding:14px 14px;color:var(--navy)}
+  table.editorial tbody tr:nth-child(even) td{background:var(--surface-low)}
+  table.editorial tbody tr:hover td{background:var(--surface-high)}
+  table.editorial tbody tr td:first-child{border-radius:12px 0 0 12px}
+  table.editorial tbody tr td:last-child{border-radius:0 12px 12px 0}
+  table.editorial td.num{font-variant-numeric:tabular-nums;font-weight:500}
+  .delta-up{color:var(--green);font-weight:500;font-size:13px}.delta-down{color:var(--red);font-weight:500;font-size:13px}
+  .pp-up{color:var(--green)}.pp-down{color:var(--red)}
+  /* Donut */
+  .donut-row{display:grid;grid-template-columns:200px 1fr;gap:28px;align-items:center}
+  .donut{width:200px;height:200px;border-radius:50%;background:conic-gradient(var(--green) 0 39.3%,var(--yellow) 39.3% 61.8%,var(--red) 61.8% 100%);display:grid;place-items:center;box-shadow:var(--shadow-soft);position:relative}
+  .donut::before{content:'';position:absolute;inset:22px;background:var(--surface-lowest);border-radius:50%}
+  .donut-center{position:relative;text-align:center}
+  .donut-center .num{font-size:1.8rem;font-weight:700;letter-spacing:-.03em;line-height:1}
+  .donut-center .lbl{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--navy-muted);margin-top:4px;font-weight:600}
+  .legend{display:flex;flex-direction:column;gap:14px}
+  .legend-item{display:flex;align-items:center;gap:12px}
+  .legend-dot{width:14px;height:14px;border-radius:4px;flex-shrink:0}
+  .legend-dot.green{background:var(--green)}.legend-dot.yellow{background:var(--yellow)}.legend-dot.red{background:var(--red)}
+  .legend-text{flex:1}.legend-name{font-weight:600;font-size:14px}.legend-val{color:var(--navy-muted);font-size:13px}
+  .legend-pct{font-weight:700;font-size:18px;letter-spacing:-.02em}
+  /* Bars */
+  .bars{display:flex;flex-direction:column;gap:10px}
+  .bar-row{display:grid;grid-template-columns:160px 1fr 60px;align-items:center;gap:14px;padding:6px 0}
+  .bar-label{font-size:13.5px;color:var(--navy);font-weight:500}
+  .bar-track{height:10px;background:var(--surface-variant);border-radius:var(--radius-pill);overflow:hidden}
+  .bar-fill{height:100%;border-radius:var(--radius-pill);background:linear-gradient(90deg,var(--blue),var(--teal))}
+  .bar-fill.warm{background:linear-gradient(90deg,var(--yellow-deep),var(--yellow))}
+  .bar-value{font-size:13.5px;font-weight:600;color:var(--navy);text-align:right;font-variant-numeric:tabular-nums}
+  /* Cross-sell */
+  .cross-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .cross-card{background:var(--surface-low);border-radius:var(--radius-lg);padding:20px}
+  .cross-title{font-size:13px;font-weight:600;margin-bottom:12px;color:var(--navy)}
+  .cross-num{font-size:2rem;font-weight:700;letter-spacing:-.03em;color:var(--navy);line-height:1}
+  .cross-sub{font-size:12px;color:var(--navy-muted);margin-top:4px}
+  .cross-bar{height:6px;background:var(--surface-variant);border-radius:var(--radius-pill);overflow:hidden;margin-top:12px}
+  .cross-bar-fill{height:100%;background:linear-gradient(90deg,var(--yellow-deep),var(--yellow));border-radius:var(--radius-pill)}
+  /* Insight */
+  .insight{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px 28px;box-shadow:var(--shadow-soft);position:relative}
+  .insight::before{content:'';position:absolute;left:0;top:28px;bottom:28px;width:4px;border-radius:var(--radius-pill);background:var(--yellow)}
+  .insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .insight h4{font-size:15px;font-weight:600;color:var(--navy);text-transform:none;letter-spacing:-.01em;margin-bottom:8px}
+  .insight p{font-size:14px;line-height:1.6;color:var(--navy-soft)}
+  .insight .reco{display:inline-block;margin-top:10px;padding:6px 12px;background:var(--yellow);color:var(--navy);font-weight:600;font-size:12px;border-radius:var(--radius-pill);text-transform:uppercase;letter-spacing:.05em}
+  footer{margin-top:60px;text-align:center;color:var(--navy-faint);font-size:12px;text-transform:uppercase;letter-spacing:.1em}
+  @media(max-width:980px){.hero,.grid-2,.grid-3,.grid-4,.cross-grid,.donut-row,.insight-grid{grid-template-columns:1fr}.trend-grid{grid-template-columns:repeat(4,1fr)}.kpi-strip{grid-template-columns:1fr 1fr}.hero h1{font-size:2.25rem}.page{padding:20px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-coin">R</div>
+      <div><div class="brand-name">Relif <span class="brand-sub">· AI Lead Management</span></div></div>
+    </div>
+    <div class="nav-group">
+      <div class="period-nav">
+        <a href="producto.html" class="period-btn">Diario</a>
+        <a href="semanal_producto.html" class="period-btn active">Semanal</a>
+        <a href="mensual_producto.html" class="period-btn">Mensual</a>
+      </div>
+      <div class="role-nav">
+        <a href="semanal_producto.html" class="role-btn active">Producto</a>
+        <a href="semanal_captacion.html" class="role-btn">Captación</a>
+        <a href="semanal_comercial.html" class="role-btn">Comercial</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-card">
+      <div class="badges">
+        <span class="badge badge-yellow">Semana 18</span>
+        <span class="badge badge-blue">27 Abr – 03 May 2026</span>
+        <span class="badge badge-green">BCI · Captación Digital</span>
+      </div>
+      <h1>Reporte Semanal<br>W18 · 2026</h1>
+      <div class="hero-subtitle">Jefe de Producto · Visión consolidada 7 días</div>
+      <div class="hero-meta">Generado 04 May 2026, 06:15 · Vista: Producto</div>
+    </div>
+    <div class="kpi-strip">
+      <div class="kpi"><div class="kpi-label">Leads semana</div><div class="kpi-value">4.218</div><div class="kpi-delta">↑ 6% vs W17</div></div>
+      <div class="kpi"><div class="kpi-label">Derivados</div><div class="kpi-value">1.382</div><div class="kpi-delta">32.8% conversión</div></div>
+      <div class="kpi"><div class="kpi-label">Simulaciones</div><div class="kpi-value">2.691</div><div class="kpi-sub">63.8% de los leads</div></div>
+      <div class="kpi"><div class="kpi-label">Pre-aprobados</div><div class="kpi-value">1.058</div><div class="kpi-sub">39.3% sobre simulaciones</div></div>
+    </div>
+  </div>
+
+  <!-- KPIs semana -->
+  <div class="section">
+    <div class="grid grid-4">
+      <div class="stat-card"><div class="stat-eyebrow">Monto simulado</div><div class="stat-num">$99.8B</div><div class="stat-foot">CLP semana completa</div></div>
+      <div class="stat-card"><div class="stat-eyebrow">Tasa pre-aprobación</div><div class="stat-num" style="color:var(--green)">39.3%</div><div class="stat-foot"><span class="delta-up">↑ 1.2pp</span> vs W17</div></div>
+      <div class="stat-card"><div class="stat-eyebrow">Tasa de rechazo</div><div class="stat-num" style="color:var(--red)">38.1%</div><div class="stat-foot">Principal: DICOM (44%)</div></div>
+      <div class="stat-card"><div class="stat-eyebrow">Drop sin respuesta</div><div class="stat-num">38.7%</div><div class="stat-foot">1.633 leads · re-eng. pendiente</div></div>
+    </div>
+  </div>
+
+  <!-- Tendencia diaria -->
+  <div class="section">
+    <div class="section-header"><div><div class="section-eyebrow">Tendencia</div><div class="section-title">Leads por día de la semana</div></div><div class="section-sub">W18 · 27 Abr – 03 May</div></div>
+    <div class="card">
+      <div class="trend-grid">
+        <div class="trend-day"><div class="trend-bar-wrap"><div class="trend-val">541</div><div class="trend-bar" style="height:78px"></div></div><div class="trend-label">Lun</div><div class="trend-conv">34.2%</div></div>
+        <div class="trend-day"><div class="trend-bar-wrap"><div class="trend-val">628</div><div class="trend-bar" style="height:91px"></div></div><div class="trend-label">Mar</div><div class="trend-conv">35.8%</div></div>
+        <div class="trend-day"><div class="trend-bar-wrap"><div class="trend-val">712</div><div class="trend-bar" style="height:103px"></div></div><div class="trend-label">Mié</div><div class="trend-conv">36.1%</div></div>
+        <div class="trend-day"><div class="trend-bar-wrap"><div class="trend-val">684</div><div class="trend-bar" style="height:99px"></div></div><div class="trend-label">Jue</div><div class="trend-conv">33.9%</div></div>
+        <div class="trend-day"><div class="trend-bar-wrap"><div class="trend-val">641</div><div class="trend-bar" style="height:93px"></div></div><div class="trend-label">Vie</div><div class="trend-conv">31.4%</div></div>
+        <div class="trend-day"><div class="trend-bar-wrap"><div class="trend-val">400</div><div class="trend-bar" style="height:58px"></div></div><div class="trend-label">Sáb</div><div class="trend-conv">27.5%</div></div>
+        <div class="trend-day"><div class="trend-bar-wrap"><div class="trend-val">612</div><div class="trend-bar today" style="height:89px"></div></div><div class="trend-label">Dom</div><div class="trend-conv">32.4%</div></div>
+      </div>
+      <p style="font-size:12px;color:var(--navy-muted);margin-top:8px;padding:0 4px">Los números debajo de las barras son % de derivación del día · Barra amarilla = hoy</p>
+    </div>
+  </div>
+
+  <!-- Productos semana -->
+  <div class="section">
+    <div class="section-header"><div><div class="section-eyebrow">Mix de productos</div><div class="section-title">Comportamiento semanal por producto</div></div><div class="section-sub">Δ vs W17</div></div>
+    <div class="grid grid-2">
+      <div class="table-wrap">
+        <h3>📊 Volumen y conversión</h3>
+        <table class="editorial">
+          <thead><tr><th>Producto</th><th>Leads</th><th>Δ W17</th><th>% Deriv.</th><th>Tendencia</th></tr></thead>
+          <tbody>
+            <tr><td>Crédito Consumo</td><td class="num">1.547</td><td class="num"><span class="delta-up">↑9%</span></td><td class="num">38.5%</td><td class="num"><span class="pp-up">+1.8pp</span></td></tr>
+            <tr><td>Hipotecario</td><td class="num">1.014</td><td class="num"><span class="delta-up">↑5%</span></td><td class="num">17.9%</td><td class="num"><span class="pp-down">-3.1pp</span></td></tr>
+            <tr><td>Refinanciamiento</td><td class="num">676</td><td class="num"><span class="delta-up">↑38%</span></td><td class="num">41.4%</td><td class="num"><span class="pp-up">+5.2pp</span></td></tr>
+            <tr><td>DAP</td><td class="num">490</td><td class="num"><span class="delta-up">↑24%</span></td><td class="num">40.2%</td><td class="num"><span class="pp-up">+3.9pp</span></td></tr>
+            <tr><td>Tarjeta de Crédito</td><td class="num">290</td><td class="num"><span class="delta-down">↓15%</span></td><td class="num">13.8%</td><td class="num"><span class="pp-down">-6.1pp</span></td></tr>
+            <tr><td>Crédito Automotriz</td><td class="num">97</td><td class="num"><span class="delta-up">↑7%</span></td><td class="num">35.1%</td><td class="num"><span class="pp-up">+1.2pp</span></td></tr>
+            <tr><td>Línea de Crédito</td><td class="num">76</td><td class="num"><span class="delta-down">↓28%</span></td><td class="num">17.1%</td><td class="num"><span class="pp-down">-8.4pp</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>📉 Razones de rechazo (semana)</h3>
+        <p style="color:var(--navy-muted);font-size:13px;margin-bottom:18px">1.026 simulaciones rechazadas en la semana</p>
+        <div class="bars">
+          <div class="bar-row"><div class="bar-label">DICOM / Boletín</div><div class="bar-track"><div class="bar-fill warm" style="width:100%"></div></div><div class="bar-value">452</div></div>
+          <div class="bar-row"><div class="bar-label">Renta insuficiente</div><div class="bar-track"><div class="bar-fill warm" style="width:78%"></div></div><div class="bar-value">318</div></div>
+          <div class="bar-row"><div class="bar-label">Antigüedad laboral</div><div class="bar-track"><div class="bar-fill warm" style="width:38%"></div></div><div class="bar-value">156</div></div>
+          <div class="bar-row"><div class="bar-label">Deuda alta / cuota</div><div class="bar-track"><div class="bar-fill warm" style="width:24%"></div></div><div class="bar-value">98</div></div>
+          <div class="bar-row"><div class="bar-label">Sin historial</div><div class="bar-track"><div class="bar-fill warm" style="width:1%"></div></div><div class="bar-value">2</div></div>
+        </div>
+        <div style="margin-top:18px;padding:12px 16px;background:var(--blue-soft);border-radius:var(--radius-md);font-size:13px;color:var(--blue);line-height:1.6">
+          <strong>Señal:</strong> DICOM sigue siendo el principal bloqueante (44%). Los rechazados por DICOM son el segmento ideal para MACH como puerta de entrada.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Funnel semanal -->
+  <div class="section">
+    <div class="section-header"><div><div class="section-eyebrow">Funnel crediticio semanal</div><div class="section-title">Estado de pre-aprobaciones</div></div><div class="section-sub">2.691 simulaciones evaluadas</div></div>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>Distribución global — semana</h3>
+        <div class="donut-row">
+          <div class="donut"><div class="donut-center"><div class="num">2.691</div><div class="lbl">Simulaciones</div></div></div>
+          <div class="legend">
+            <div class="legend-item"><div class="legend-dot green"></div><div class="legend-text"><div class="legend-name">Pre-aprobado</div><div class="legend-val">1.058 leads</div></div><div class="legend-pct">39.3%</div></div>
+            <div class="legend-item"><div class="legend-dot yellow"></div><div class="legend-text"><div class="legend-name">En evaluación</div><div class="legend-val">607 leads</div></div><div class="legend-pct">22.6%</div></div>
+            <div class="legend-item"><div class="legend-dot red"></div><div class="legend-text"><div class="legend-name">Rechazado</div><div class="legend-val">1.026 leads</div></div><div class="legend-pct">38.1%</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>📈 Evolución tasa pre-aprobación (últimas 4 semanas)</h3>
+        <div class="bars" style="margin-top:8px">
+          <div class="bar-row"><div class="bar-label">W15 · 06–12 Abr</div><div class="bar-track"><div class="bar-fill" style="width:73%"></div></div><div class="bar-value">36.2%</div></div>
+          <div class="bar-row"><div class="bar-label">W16 · 13–19 Abr</div><div class="bar-track"><div class="bar-fill" style="width:76%"></div></div><div class="bar-value">37.8%</div></div>
+          <div class="bar-row"><div class="bar-label">W17 · 20–26 Abr</div><div class="bar-track"><div class="bar-fill" style="width:77%"></div></div><div class="bar-value">38.1%</div></div>
+          <div class="bar-row" style="background:rgba(249,208,10,.08);border-radius:8px;padding:8px"><div class="bar-label"><strong>W18 · 27 Abr–03 May</strong></div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><div class="bar-value"><strong>39.3%</strong></div></div>
+        </div>
+        <p style="font-size:12px;color:var(--green);margin-top:12px;font-weight:600">↑ Cuarta semana consecutiva de mejora en tasa de aprobación</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cross-sell semanal -->
+  <div class="section">
+    <div class="section-header"><div><div class="section-eyebrow">Cross-sell</div><div class="section-title">Productos adicionales por cliente</div></div></div>
+    <div class="cross-grid">
+      <div class="cross-card">
+        <div class="cross-title">Attach rate semanal</div>
+        <div class="cross-num">18.4%</div>
+        <div class="cross-sub">de los cursados llevaron 2+ productos</div>
+        <div class="cross-bar"><div class="cross-bar-fill" style="width:18%"></div></div>
+        <p style="font-size:12px;color:var(--navy-muted);margin-top:10px">Meta: 25% · <span style="color:var(--red)">↓ 6.6pp bajo meta</span></p>
+      </div>
+      <div class="cross-card">
+        <div class="cross-title">Top combo: Refi + Cta Vista</div>
+        <div class="cross-num">47</div>
+        <div class="cross-sub">clientes con bundle completo</div>
+        <div class="cross-bar"><div class="cross-bar-fill" style="width:62%"></div></div>
+        <p style="font-size:12px;color:var(--navy-muted);margin-top:10px">Refinanciamiento sigue siendo el mejor gancho de cross-sell</p>
+      </div>
+      <div class="cross-card">
+        <div class="cross-title">DAP → FM Preferencial</div>
+        <div class="cross-num">23</div>
+        <div class="cross-sub">clientes derivados con mix DAP+FM</div>
+        <div class="cross-bar"><div class="cross-bar-fill" style="width:30%"></div></div>
+        <p style="font-size:12px;color:var(--navy-muted);margin-top:10px">Margen 3.2x mayor · Macarena Ríos concentra el 78%</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tópicos semana -->
+  <div class="section">
+    <div class="section-header"><div><div class="section-eyebrow">Voz del cliente</div><div class="section-title">¿Qué preguntaron esta semana?</div></div></div>
+    <div class="card">
+      <div class="bars">
+        <div class="bar-row"><div class="bar-label">Tasa de interés</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-value">2.187</div></div>
+        <div class="bar-row"><div class="bar-label">Cuota mensual</div><div class="bar-track"><div class="bar-fill" style="width:91%"></div></div><div class="bar-value">1.991</div></div>
+        <div class="bar-row"><div class="bar-label">Simulación</div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><div class="bar-value">1.748</div></div>
+        <div class="bar-row"><div class="bar-label">Pre-aprobación</div><div class="bar-track"><div class="bar-fill" style="width:62%"></div></div><div class="bar-value">1.364</div></div>
+        <div class="bar-row"><div class="bar-label">Portabilidad / Refi</div><div class="bar-track"><div class="bar-fill" style="width:34%"></div></div><div class="bar-value">743</div></div>
+        <div class="bar-row"><div class="bar-label">Documentos requeridos</div><div class="bar-track"><div class="bar-fill" style="width:28%"></div></div><div class="bar-value">613</div></div>
+        <div class="bar-row"><div class="bar-label">DICOM / Boletín</div><div class="bar-track"><div class="bar-fill warm" style="width:18%"></div></div><div class="bar-value">394</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Insights -->
+  <div class="section">
+    <div class="section-header"><div><div class="section-eyebrow">Insights semanales</div><div class="section-title">Patrones y acciones para la próxima semana</div></div></div>
+    <div class="insight-grid">
+      <div class="insight"><h4>Miércoles es el día de mayor volumen y conversión</h4><p>712 leads y 36.1% de conversión. El fin de semana cae en volumen (-43% el sábado) pero el domingo rebota. Oportunidad de concentrar follow-up de ejecutivos lunes temprano.</p><span class="reco">Reforzar lunes AM</span></div>
+      <div class="insight"><h4>Tasa pre-aprobación mejora 4ª semana consecutiva</h4><p>De 36.2% en W15 a 39.3% en W18. La mejora en calidad de leads de Salesforce Consumo (+43.2% activación) está traccionando el resultado general del funnel.</p><span class="reco">Escalar Salesforce Consumo</span></div>
+      <div class="insight"><h4>Refinanciamiento creció 38% — mayor aceleración de la semana</h4><p>De 490 leads en W17 a 676 en W18. La tasa de derivación sube a 41.4%. Es el producto con mejor crecimiento simultáneo en volumen y conversión.</p><span class="reco">Ampliar pauta portabilidad</span></div>
+      <div class="insight"><h4>Attach rate de cross-sell al 18.4% — bajo la meta del 25%</h4><p>Solo Macarena Ríos tiene attach rate consistente (DAP+FM). Felipe y Rodrigo no ofrecen productos adicionales sistemáticamente al cerrar.</p><span class="reco">Script cross-sell para ejecutivos</span></div>
+    </div>
+  </div>
+
+  <footer>Reporte semanal generado por Relif · AI Lead Management · BCI · W18 2026 · Vista: Producto</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Reporte Semanal · Captación · BCI · W18 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--teal:#0F6775;--teal-deep:#0A4A55;--teal-muted:#4A8A95;--teal-faint:#85B5BE;--teal-soft:#D4EFF3;--yellow:#F9D00A;--yellow-deep:#705D00;--yellow-soft:#FDD414;--surface:#F5FAFB;--surface-low:#EAF4F6;--surface-lowest:#FFFFFF;--surface-variant:#DAF0F3;--surface-high:#D0ECF0;--navy:#15183A;--navy-muted:#5A5D7E;--navy-faint:#9598B0;--blue:#2C5889;--blue-soft:#DDE7F4;--green:#2F7A5B;--green-soft:#DEEFE6;--red:#B43A4A;--red-soft:#F6DEE2;--shadow-soft:0 12px 32px rgba(15,103,117,.07);--shadow-medium:0 18px 48px rgba(15,103,117,.10);--radius-xl:1.5rem;--radius-lg:1.125rem;--radius-md:.75rem;--radius-pill:999px}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--surface);color:var(--navy);font-family:'Jost',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;letter-spacing:-.005em}
+  a{color:var(--teal);text-decoration:none;transition:opacity .15s}a:hover{opacity:.7}
+  .page{max-width:1320px;margin:0 auto;padding:32px 40px 80px}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(255,255,255,.65);backdrop-filter:blur(16px);border-radius:var(--radius-pill);box-shadow:var(--shadow-soft);margin-bottom:24px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand-coin{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#FDD414,#F9D00A);display:grid;place-items:center;font-weight:700;color:var(--navy);font-size:15px;box-shadow:inset 0 -2px 0 rgba(112,93,0,.18),0 4px 12px rgba(249,208,10,.35)}
+  .brand-name{font-weight:600;letter-spacing:-.02em;font-size:17px}
+  .brand-sub{color:var(--navy-muted);font-size:13px;margin-left:4px}
+  .nav-group{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+  .period-nav{display:flex;gap:6px;background:var(--surface-variant);padding:5px;border-radius:var(--radius-pill)}
+  .period-btn{padding:6px 16px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;text-decoration:none;color:var(--teal-deep);transition:all .15s}
+  .period-btn.active{background:var(--teal);color:#fff}
+  .role-nav{display:flex;gap:6px;background:rgba(255,255,255,.7);backdrop-filter:blur(16px);padding:5px;border-radius:var(--radius-pill);box-shadow:var(--shadow-soft)}
+  .role-btn{padding:6px 16px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;text-decoration:none;color:var(--navy-muted);transition:all .15s}
+  .role-btn.active{background:var(--teal);color:#fff}
+  .role-btn:hover:not(.active){background:var(--surface-variant);opacity:1;color:var(--teal-deep)}
+  .hero{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;margin-bottom:32px}
+  .hero-card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:36px 40px;box-shadow:var(--shadow-soft);position:relative;overflow:hidden}
+  .hero-card::after{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(15,103,117,.12),transparent 70%);pointer-events:none}
+  .badges{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+  .badge{padding:6px 14px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+  .badge-yellow{background:var(--yellow);color:var(--navy)}.badge-teal{background:var(--teal-soft);color:var(--teal-deep)}.badge-green{background:var(--green-soft);color:var(--green)}
+  .hero h1{font-size:3rem;font-weight:700;letter-spacing:-.035em;line-height:1.05;margin-bottom:12px}
+  .hero-subtitle{color:var(--navy-muted);font-size:17px;margin-bottom:8px}
+  .hero-meta{color:var(--navy-faint);font-size:13px;text-transform:uppercase;letter-spacing:.05em;font-weight:500}
+  .kpi-strip{background:var(--teal);color:#FFF;border-radius:var(--radius-xl);padding:32px;box-shadow:var(--shadow-medium);display:grid;grid-template-columns:repeat(2,1fr);gap:24px;position:relative;overflow:hidden}
+  .kpi-strip::before{content:'';position:absolute;bottom:-30px;left:-30px;width:120px;height:120px;border-radius:50%;background:var(--yellow);opacity:.15}
+  .kpi{position:relative}
+  .kpi-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;color:rgba(255,255,255,.55);margin-bottom:8px}
+  .kpi-value{font-size:2.25rem;font-weight:700;letter-spacing:-.03em;line-height:1}
+  .kpi-delta{margin-top:6px;font-size:13px;font-weight:500;color:var(--yellow)}
+  .kpi-sub{color:rgba(255,255,255,.6);font-size:13px;margin-top:4px}
+  .section{margin-bottom:40px}
+  .section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;padding:0 4px}
+  .section-title{font-size:1.5rem;font-weight:700;letter-spacing:-.025em}
+  .section-eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:600;color:var(--teal);margin-bottom:6px}
+  .section-sub{color:var(--navy-muted);font-size:14px}
+  .card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:28px 32px;box-shadow:var(--shadow-soft)}
+  .card h3{font-size:1.0625rem;font-weight:600;letter-spacing:-.015em;margin-bottom:14px}
+  .grid{display:grid;gap:24px}.grid-2{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(3,1fr)}.grid-4{grid-template-columns:repeat(4,1fr)}
+  .stat-card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px 26px;box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:8px}
+  .stat-eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--teal-muted)}
+  .stat-num{font-size:2.5rem;font-weight:700;letter-spacing:-.035em;line-height:1}
+  .stat-foot{font-size:13px;color:var(--navy-muted)}
+  /* Channel trend */
+  .trend-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;align-items:end;padding:24px 0 8px}
+  .trend-day{display:flex;flex-direction:column;align-items:center;gap:8px}
+  .trend-bar-wrap{width:100%;display:flex;flex-direction:column;align-items:center;gap:4px;height:120px;justify-content:flex-end}
+  .trend-bar{width:100%;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--teal),var(--teal-deep));min-height:4px}
+  .trend-bar.today{background:linear-gradient(180deg,var(--yellow-soft),var(--yellow-deep))}
+  .trend-val{font-size:13px;font-weight:700;color:var(--navy)}
+  .trend-label{font-size:11px;color:var(--navy-muted);font-weight:600;text-transform:uppercase}
+  .trend-conv{font-size:10px;color:var(--navy-muted)}
+  /* Table */
+  .table-wrap{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px 28px;box-shadow:var(--shadow-soft)}
+  table.editorial{width:100%;border-collapse:collapse;font-size:14px}
+  table.editorial thead th{text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--navy-muted);padding:12px 14px}
+  table.editorial tbody td{padding:14px 14px;color:var(--navy)}
+  table.editorial tbody tr:nth-child(even) td{background:var(--surface-low)}
+  table.editorial tbody tr:hover td{background:var(--surface-high)}
+  table.editorial tbody tr td:first-child{border-radius:12px 0 0 12px}
+  table.editorial tbody tr td:last-child{border-radius:0 12px 12px 0}
+  table.editorial td.num{font-variant-numeric:tabular-nums;font-weight:500}
+  .delta-up{color:var(--green);font-weight:500;font-size:13px}.delta-down{color:var(--red);font-weight:500;font-size:13px}
+  .pp-up{color:var(--green)}.pp-down{color:var(--red)}
+  /* Signal badges */
+  .signal{display:inline-block;padding:4px 10px;border-radius:var(--radius-pill);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+  .signal-grow{background:var(--green-soft);color:var(--green)}
+  .signal-watch{background:#FFF3CD;color:#7A5C00}
+  .signal-pause{background:var(--red-soft);color:var(--red)}
+  /* Bars */
+  .bars{display:flex;flex-direction:column;gap:10px}
+  .bar-row{display:grid;grid-template-columns:180px 1fr 70px;align-items:center;gap:14px;padding:6px 0}
+  .bar-label{font-size:13.5px;color:var(--navy);font-weight:500}
+  .bar-track{height:10px;background:var(--surface-variant);border-radius:var(--radius-pill);overflow:hidden}
+  .bar-fill{height:100%;border-radius:var(--radius-pill);background:linear-gradient(90deg,var(--teal),var(--teal-muted))}
+  .bar-fill.warm{background:linear-gradient(90deg,var(--yellow-deep),var(--yellow))}
+  .bar-fill.red{background:linear-gradient(90deg,var(--red),#D4606D)}
+  .bar-value{font-size:13.5px;font-weight:600;color:var(--navy);text-align:right;font-variant-numeric:tabular-nums}
+  /* Channel card */
+  .ch-card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:26px 28px;box-shadow:var(--shadow-soft);border-top:4px solid transparent}
+  .ch-card.top{border-top-color:var(--teal)}
+  .ch-card.watch{border-top-color:var(--yellow)}
+  .ch-card.pause{border-top-color:var(--red)}
+  .ch-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--teal-muted);margin-bottom:8px}
+  .ch-name{font-size:1.125rem;font-weight:700;letter-spacing:-.02em;margin-bottom:14px}
+  .ch-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+  .ch-kpi-label{font-size:11px;color:var(--navy-muted);margin-bottom:4px}
+  .ch-kpi-val{font-size:1.5rem;font-weight:700;letter-spacing:-.02em}
+  .ch-action{display:inline-block;padding:7px 14px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+  .ch-action.grow{background:var(--green-soft);color:var(--green)}
+  .ch-action.watch{background:#FFF3CD;color:#7A5C00}
+  .ch-action.pause{background:var(--red-soft);color:var(--red)}
+  /* Trend line (4-week) */
+  .trend4-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+  .trend4-col{display:flex;flex-direction:column;align-items:center;gap:6px}
+  .trend4-bar-wrap{width:100%;height:80px;display:flex;align-items:flex-end}
+  .trend4-bar{width:100%;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--teal),var(--teal-deep));min-height:4px}
+  .trend4-bar.current{background:linear-gradient(180deg,var(--yellow-soft),var(--yellow-deep))}
+  .trend4-val{font-size:13px;font-weight:700;color:var(--navy)}
+  .trend4-label{font-size:11px;color:var(--navy-muted);font-weight:600}
+  /* Insight */
+  .insight{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px 28px;box-shadow:var(--shadow-soft);position:relative}
+  .insight::before{content:'';position:absolute;left:0;top:28px;bottom:28px;width:4px;border-radius:var(--radius-pill);background:var(--teal)}
+  .insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .insight h4{font-size:15px;font-weight:600;color:var(--navy);letter-spacing:-.01em;margin-bottom:8px}
+  .insight p{font-size:14px;line-height:1.6;color:var(--navy-muted)}
+  .insight .reco{display:inline-block;margin-top:10px;padding:6px 12px;background:var(--teal-soft);color:var(--teal-deep);font-weight:600;font-size:12px;border-radius:var(--radius-pill);text-transform:uppercase;letter-spacing:.05em}
+  footer{margin-top:60px;text-align:center;color:var(--navy-faint);font-size:12px;text-transform:uppercase;letter-spacing:.1em}
+  @media(max-width:980px){.hero,.grid-2,.grid-3,.grid-4,.ch-kpis,.insight-grid,.trend4-row{grid-template-columns:1fr}.trend-grid{grid-template-columns:repeat(4,1fr)}.kpi-strip{grid-template-columns:1fr 1fr}.hero h1{font-size:2.25rem}.page{padding:20px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-coin">R</div>
+      <div><div class="brand-name">Relif <span class="brand-sub">· AI Lead Management</span></div></div>
+    </div>
+    <div class="nav-group">
+      <div class="period-nav">
+        <a href="captacion.html" class="period-btn">Diario</a>
+        <a href="semanal_captacion.html" class="period-btn active">Semanal</a>
+        <a href="mensual_captacion.html" class="period-btn">Mensual</a>
+      </div>
+      <div class="role-nav">
+        <a href="semanal_producto.html" class="role-btn">Producto</a>
+        <a href="semanal_captacion.html" class="role-btn active">Captación</a>
+        <a href="semanal_comercial.html" class="role-btn">Comercial</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-card">
+      <div class="badges">
+        <span class="badge badge-yellow">Semana 18</span>
+        <span class="badge badge-teal">27 Abr – 03 May 2026</span>
+        <span class="badge badge-green">BCI · Captación Digital</span>
+      </div>
+      <h1>Reporte Semanal<br>W18 · 2026</h1>
+      <div class="hero-subtitle">Captación · Rendimiento por canal 7 días</div>
+      <div class="hero-meta">Generado 04 May 2026, 06:15 · Vista: Captación</div>
+    </div>
+    <div class="kpi-strip">
+      <div class="kpi"><div class="kpi-label">Leads semana</div><div class="kpi-value">4.218</div><div class="kpi-delta">↑ 6% vs W17</div></div>
+      <div class="kpi"><div class="kpi-label">Canales activos</div><div class="kpi-value">5</div><div class="kpi-sub">App, Web, WhatsApp, DAP, TikTok</div></div>
+      <div class="kpi"><div class="kpi-label">Mejor CPL</div><div class="kpi-value">$3.800</div><div class="kpi-sub">App BCI (↓12% vs W17)</div></div>
+      <div class="kpi"><div class="kpi-label">Conv. global</div><div class="kpi-value">32.8%</div><div class="kpi-delta">↑ 1.4pp vs W17</div></div>
+    </div>
+  </div>
+
+  <!-- KPIs captación -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Captación · Semana 18</div>
+        <div class="section-title">Volumen por canal</div>
+      </div>
+      <div class="section-sub">Lun 27 Abr → Dom 03 May</div>
+    </div>
+    <div class="grid grid-4">
+      <div class="stat-card">
+        <div class="stat-eyebrow">App BCI</div>
+        <div class="stat-num">1.847</div>
+        <div class="stat-foot" style="color:var(--green)">↑ 8% vs W17 · 43.8% del total</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-eyebrow">Web Relif</div>
+        <div class="stat-num">1.124</div>
+        <div class="stat-foot" style="color:var(--green)">↑ 4% vs W17 · 26.6% del total</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-eyebrow">Campaña DAP</div>
+        <div class="stat-num">612</div>
+        <div class="stat-foot" style="color:var(--navy-muted)">= W17 · 14.5% del total</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-eyebrow">WhatsApp + TikTok</div>
+        <div class="stat-num">635</div>
+        <div class="stat-foot" style="color:var(--red)">↓ 3% vs W17 · 15.1% del total</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tendencia diaria -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Volumen diario</div>
+        <div class="section-title">Leads por día — W18</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="trend-grid">
+        <div class="trend-day">
+          <div class="trend-bar-wrap">
+            <div class="trend-val">541</div>
+            <div class="trend-bar" style="height:54px"></div>
+          </div>
+          <div class="trend-label">Lun</div>
+          <div class="trend-conv">31.4%</div>
+        </div>
+        <div class="trend-day">
+          <div class="trend-bar-wrap">
+            <div class="trend-val">628</div>
+            <div class="trend-bar" style="height:63px"></div>
+          </div>
+          <div class="trend-label">Mar</div>
+          <div class="trend-conv">33.1%</div>
+        </div>
+        <div class="trend-day">
+          <div class="trend-bar-wrap">
+            <div class="trend-val">712</div>
+            <div class="trend-bar" style="height:72px"></div>
+          </div>
+          <div class="trend-label">Mié</div>
+          <div class="trend-conv">34.5%</div>
+        </div>
+        <div class="trend-day">
+          <div class="trend-bar-wrap">
+            <div class="trend-val">684</div>
+            <div class="trend-bar" style="height:68px"></div>
+          </div>
+          <div class="trend-label">Jue</div>
+          <div class="trend-conv">33.8%</div>
+        </div>
+        <div class="trend-day">
+          <div class="trend-bar-wrap">
+            <div class="trend-val">641</div>
+            <div class="trend-bar" style="height:64px"></div>
+          </div>
+          <div class="trend-label">Vie</div>
+          <div class="trend-conv">32.0%</div>
+        </div>
+        <div class="trend-day">
+          <div class="trend-bar-wrap">
+            <div class="trend-val">400</div>
+            <div class="trend-bar" style="height:40px"></div>
+          </div>
+          <div class="trend-label">Sáb</div>
+          <div class="trend-conv">28.5%</div>
+        </div>
+        <div class="trend-day">
+          <div class="trend-bar-wrap">
+            <div class="trend-val">612</div>
+            <div class="trend-bar today" style="height:61px"></div>
+          </div>
+          <div class="trend-label">Dom</div>
+          <div class="trend-conv">31.9%</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--navy-muted);text-align:center;padding-top:8px">Porcentaje bajo barra = tasa de derivación del día · Barra amarilla = último día del período</p>
+    </div>
+  </div>
+
+  <!-- Rendimiento por canal -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Análisis de canal</div>
+        <div class="section-title">Rendimiento semanal por origen</div>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="editorial">
+        <thead>
+          <tr>
+            <th>Canal</th>
+            <th class="num">Leads</th>
+            <th class="num">% Total</th>
+            <th class="num">Derivados</th>
+            <th class="num">Tasa conv.</th>
+            <th class="num">CPL est.</th>
+            <th class="num">vs W17</th>
+            <th>Señal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>App BCI</strong></td>
+            <td class="num">1.847</td>
+            <td class="num">43.8%</td>
+            <td class="num">668</td>
+            <td class="num">36.2%</td>
+            <td class="num">$3.800</td>
+            <td class="num"><span class="delta-up">↑ 8%</span></td>
+            <td><span class="signal signal-grow">Escalar</span></td>
+          </tr>
+          <tr>
+            <td><strong>Web Relif</strong></td>
+            <td class="num">1.124</td>
+            <td class="num">26.6%</td>
+            <td class="num">382</td>
+            <td class="num">34.0%</td>
+            <td class="num">$5.200</td>
+            <td class="num"><span class="delta-up">↑ 4%</span></td>
+            <td><span class="signal signal-grow">Mantener</span></td>
+          </tr>
+          <tr>
+            <td><strong>Campaña DAP</strong></td>
+            <td class="num">612</td>
+            <td class="num">14.5%</td>
+            <td class="num">186</td>
+            <td class="num">30.4%</td>
+            <td class="num">$9.100</td>
+            <td class="num"><span class="delta-up">= 0%</span></td>
+            <td><span class="signal signal-watch">Optimizar</span></td>
+          </tr>
+          <tr>
+            <td><strong>WhatsApp</strong></td>
+            <td class="num">412</td>
+            <td class="num">9.8%</td>
+            <td class="num">118</td>
+            <td class="num">28.6%</td>
+            <td class="num">$6.400</td>
+            <td class="num"><span class="delta-down">↓ 2%</span></td>
+            <td><span class="signal signal-watch">Revisar</span></td>
+          </tr>
+          <tr>
+            <td><strong>TikTok Ads</strong></td>
+            <td class="num">223</td>
+            <td class="num">5.3%</td>
+            <td class="num">28</td>
+            <td class="num">12.6%</td>
+            <td class="num">$22.400</td>
+            <td class="num"><span class="delta-down">↓ 6%</span></td>
+            <td><span class="signal signal-pause">Pausar</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Top 3 canales -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Decisiones de canal</div>
+        <div class="section-title">Top canales — acción recomendada</div>
+      </div>
+    </div>
+    <div class="grid grid-3">
+      <div class="ch-card top">
+        <div class="ch-label">Canal líder</div>
+        <div class="ch-name">App BCI</div>
+        <div class="ch-kpis">
+          <div>
+            <div class="ch-kpi-label">Leads</div>
+            <div class="ch-kpi-val" style="color:var(--teal)">1.847</div>
+          </div>
+          <div>
+            <div class="ch-kpi-label">Conv.</div>
+            <div class="ch-kpi-val" style="color:var(--teal)">36.2%</div>
+          </div>
+          <div>
+            <div class="ch-kpi-label">CPL</div>
+            <div class="ch-kpi-val" style="color:var(--teal)">$3.8K</div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--navy-muted);margin-bottom:14px">Mayor volumen y menor costo. Conversión 6pp sobre promedio. Mayor pendiente de crecimiento semanal.</p>
+        <span class="ch-action grow">↑ Escalar budget</span>
+      </div>
+      <div class="ch-card watch">
+        <div class="ch-label">Canal a optimizar</div>
+        <div class="ch-name">Campaña DAP</div>
+        <div class="ch-kpis">
+          <div>
+            <div class="ch-kpi-label">Leads</div>
+            <div class="ch-kpi-val" style="color:#7A5C00">612</div>
+          </div>
+          <div>
+            <div class="ch-kpi-label">Conv.</div>
+            <div class="ch-kpi-val" style="color:#7A5C00">30.4%</div>
+          </div>
+          <div>
+            <div class="ch-kpi-label">CPL</div>
+            <div class="ch-kpi-val" style="color:#7A5C00">$9.1K</div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--navy-muted);margin-bottom:14px">CPL 2.4x App BCI. Volumen estancado 3 semanas. Oportunidad en segmentación de audiencia DAP.</p>
+        <span class="ch-action watch">Revisar segmentación</span>
+      </div>
+      <div class="ch-card pause">
+        <div class="ch-label">Canal a revisar</div>
+        <div class="ch-name">TikTok Ads</div>
+        <div class="ch-kpis">
+          <div>
+            <div class="ch-kpi-label">Leads</div>
+            <div class="ch-kpi-val" style="color:var(--red)">223</div>
+          </div>
+          <div>
+            <div class="ch-kpi-label">Conv.</div>
+            <div class="ch-kpi-val" style="color:var(--red)">12.6%</div>
+          </div>
+          <div>
+            <div class="ch-kpi-label">CPL</div>
+            <div class="ch-kpi-val" style="color:var(--red)">$22.4K</div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--navy-muted);margin-bottom:14px">CPL ineficiente. Conversión 20pp bajo promedio. Leads de baja intención detectados por AI.</p>
+        <span class="ch-action pause">Pausar campaña</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Demanda por producto -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Mix de demanda</div>
+        <div class="section-title">Producto solicitado por canal</div>
+      </div>
+    </div>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>Distribución de leads por producto</h3>
+        <div class="bars">
+          <div class="bar-row">
+            <div class="bar-label">Crédito de Consumo</div>
+            <div class="bar-track"><div class="bar-fill" style="width:58%"></div></div>
+            <div class="bar-value">2.446</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Refinanciamiento</div>
+            <div class="bar-track"><div class="bar-fill" style="width:22%"></div></div>
+            <div class="bar-value">928</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Automotriz</div>
+            <div class="bar-track"><div class="bar-fill" style="width:11%"></div></div>
+            <div class="bar-value">464</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Hipotecario</div>
+            <div class="bar-track"><div class="bar-fill" style="width:6%"></div></div>
+            <div class="bar-value">253</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Otros</div>
+            <div class="bar-track"><div class="bar-fill" style="width:3%"></div></div>
+            <div class="bar-value">127</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Razones principales de no derivación</h3>
+        <div class="bars">
+          <div class="bar-row">
+            <div class="bar-label">Sin respuesta al chat</div>
+            <div class="bar-track"><div class="bar-fill red" style="width:44%"></div></div>
+            <div class="bar-value">38.1%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Renta insuficiente</div>
+            <div class="bar-track"><div class="bar-fill red" style="width:30%"></div></div>
+            <div class="bar-value">26.4%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Historial negativo</div>
+            <div class="bar-track"><div class="bar-fill red" style="width:22%"></div></div>
+            <div class="bar-value">19.2%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">No interesado</div>
+            <div class="bar-track"><div class="bar-fill red" style="width:10%"></div></div>
+            <div class="bar-value">9.4%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Datos incompletos</div>
+            <div class="bar-track"><div class="bar-fill red" style="width:8%"></div></div>
+            <div class="bar-value">6.9%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Evolución tasa de captación 4 semanas -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Tendencia 4 semanas</div>
+        <div class="section-title">Evolución de captación — W15 a W18</div>
+      </div>
+    </div>
+    <div class="card">
+      <p style="font-size:14px;color:var(--navy-muted);margin-bottom:20px">Tasa de derivación (leads → derivados al ejecutivo)</p>
+      <div class="trend4-row">
+        <div class="trend4-col">
+          <div class="trend4-bar-wrap"><div class="trend4-bar" style="height:56px"></div></div>
+          <div class="trend4-val">31.4%</div>
+          <div class="trend4-label">W15</div>
+        </div>
+        <div class="trend4-col">
+          <div class="trend4-bar-wrap"><div class="trend4-bar" style="height:61px"></div></div>
+          <div class="trend4-val">31.8%</div>
+          <div class="trend4-label">W16</div>
+        </div>
+        <div class="trend4-col">
+          <div class="trend4-bar-wrap"><div class="trend4-bar" style="height:64px"></div></div>
+          <div class="trend4-val">31.4%</div>
+          <div class="trend4-label">W17</div>
+        </div>
+        <div class="trend4-col">
+          <div class="trend4-bar-wrap"><div class="trend4-bar current" style="height:80px"></div></div>
+          <div class="trend4-val" style="color:var(--teal);font-weight:700">32.8%</div>
+          <div class="trend4-label" style="color:var(--teal)">W18 ↑</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--navy-muted);margin-top:20px;text-align:center">La mejora en W18 es atribuible principalmente al aumento de volumen en App BCI, canal con mayor tasa de conversión</p>
+    </div>
+  </div>
+
+  <!-- Insights captación -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">AI Insights</div>
+        <div class="section-title">Conclusiones semanales · Captación</div>
+      </div>
+    </div>
+    <div class="insight">
+      <div class="insight-grid">
+        <div>
+          <h4>App BCI sigue siendo el canal más eficiente</h4>
+          <p>Con CPL de $3.800 y conversión del 36.2%, supera ampliamente a todos los canales. El crecimiento semanal del 8% sugiere capacidad de escalar sin saturación de audiencia.</p>
+          <span class="reco">↑ Aumentar pauta</span>
+        </div>
+        <div>
+          <h4>TikTok Ads muestra señales de agotamiento</h4>
+          <p>Conversión del 12.6% y CPL de $22.400: el peor ratio de la semana. La AI detecta leads de baja intención —usuarios que no completan el flujo de simulación.</p>
+          <span class="reco">Pausar y analizar</span>
+        </div>
+        <div>
+          <h4>Sábado: caída sistemática de volumen y conversión</h4>
+          <p>Cada semana, el sábado registra 30–35% menos leads que días hábiles y 3–4pp menos conversión. Redistribuir budget de sábado a miércoles/jueves puede mejorar CPL semanal.</p>
+          <span class="reco">Optimizar distribución</span>
+        </div>
+        <div>
+          <h4>Crédito Consumo concentra el 58% de la demanda</h4>
+          <p>Oportunidad de segmentar mensajes por canal: usuarios de App BCI responden mejor a montos altos ($5M+), mientras que leads de TikTok simulan montos bajos ($500K–$1.5M).</p>
+          <span class="reco">Segmentar mensajes</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>Relif AI · Reporte Semanal · Captación · W18 2026 · Generado automáticamente</footer>
+</div>
+</body>
+</html>
