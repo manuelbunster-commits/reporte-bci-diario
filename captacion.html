@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Reporte Captación · BCI · 03 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#15183A;--navy-soft:#2A2D55;--navy-muted:#5A5D7E;--navy-faint:#9598B0;--yellow:#F9D00A;--yellow-deep:#705D00;--yellow-soft:#FDD414;--surface:#FBF8FF;--surface-low:#F4F2FF;--surface-lowest:#FFFFFF;--surface-variant:#ECE9F7;--surface-high:#EDEAFB;--teal:#25616F;--teal-soft:#DBEEF1;--blue:#2C5889;--blue-soft:#DDE7F4;--green:#2F7A5B;--green-soft:#DEEFE6;--red:#B43A4A;--red-soft:#F6DEE2;--shadow-soft:0 12px 32px rgba(21,24,58,.06);--shadow-medium:0 18px 48px rgba(21,24,58,.08);--radius-xl:1.5rem;--radius-lg:1.125rem;--radius-md:.75rem;--radius-pill:999px}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--surface);color:var(--navy);font-family:'Jost',-apple-system,sans-serif;font-weight:400;line-height:1.5;-webkit-font-smoothing:antialiased;letter-spacing:-.005em}
+  a{color:var(--blue);text-decoration:none;transition:opacity .15s}a:hover{opacity:.7}
+  .page{max-width:1320px;margin:0 auto;padding:32px 40px 80px}
+  .role-nav{display:flex;gap:8px;background:rgba(255,255,255,.7);backdrop-filter:blur(16px);padding:8px;border-radius:var(--radius-pill);box-shadow:var(--shadow-soft);margin-bottom:24px;width:fit-content}
+  .role-btn{padding:8px 20px;border-radius:var(--radius-pill);font-size:13px;font-weight:600;text-decoration:none;color:var(--navy-muted);transition:all .15s}
+  .role-btn.active{background:var(--teal);color:#fff}
+  .role-btn:hover:not(.active){background:var(--surface-variant);opacity:1}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(255,255,255,.65);backdrop-filter:blur(16px);border-radius:var(--radius-pill);box-shadow:var(--shadow-soft);margin-bottom:24px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand-coin{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--yellow-soft),var(--yellow));display:grid;place-items:center;font-weight:700;color:var(--navy);font-size:15px;box-shadow:inset 0 -2px 0 rgba(112,93,0,.18),0 4px 12px rgba(249,208,10,.35)}
+  .brand-name{font-weight:600;letter-spacing:-.02em;font-size:17px}
+  .brand-sub{color:var(--navy-muted);font-size:13px;margin-left:4px}
+  .hero{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;margin-bottom:32px}
+  .hero-card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:36px 40px;box-shadow:var(--shadow-soft);position:relative;overflow:hidden}
+  .hero-card::after{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(37,97,111,.12),transparent 70%);pointer-events:none}
+  .badges{display:flex;gap:8px;margin-bottom:20px}
+  .badge{padding:6px 14px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+  .badge-yellow{background:var(--yellow);color:var(--navy)}
+  .badge-teal{background:var(--teal-soft);color:var(--teal)}
+  .badge-blue{background:var(--blue-soft);color:var(--blue)}
+  .hero h1{font-size:3.25rem;font-weight:700;letter-spacing:-.035em;line-height:1.05;margin-bottom:12px}
+  .hero-subtitle{color:var(--navy-muted);font-size:17px;margin-bottom:8px}
+  .hero-meta{color:var(--navy-faint);font-size:13px;text-transform:uppercase;letter-spacing:.05em;font-weight:500}
+  .kpi-strip{background:var(--teal);color:#FFF;border-radius:var(--radius-xl);padding:32px;box-shadow:var(--shadow-medium);display:grid;grid-template-columns:repeat(2,1fr);gap:24px;position:relative;overflow:hidden}
+  .kpi-strip::before{content:'';position:absolute;bottom:-30px;left:-30px;width:120px;height:120px;border-radius:50%;background:#fff;opacity:.08}
+  .kpi{position:relative}
+  .kpi-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;color:rgba(255,255,255,.6);margin-bottom:8px}
+  .kpi-value{font-size:2.25rem;font-weight:700;letter-spacing:-.03em;line-height:1}
+  .kpi-delta{margin-top:6px;font-size:13px;font-weight:500;color:var(--yellow)}
+  .kpi-sub{color:rgba(255,255,255,.6);font-size:13px;margin-top:4px}
+  .section{margin-bottom:40px}
+  .section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;padding:0 4px}
+  .section-title{font-size:1.5rem;font-weight:700;letter-spacing:-.025em}
+  .section-eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:600;color:var(--navy-muted);margin-bottom:6px}
+  .section-sub{color:var(--navy-muted);font-size:14px}
+  .card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:28px 32px;box-shadow:var(--shadow-soft)}
+  .card h3{font-size:1.0625rem;font-weight:600;letter-spacing:-.015em;margin-bottom:14px}
+  .grid{display:grid;gap:24px}
+  .grid-2{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .table-wrap{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px 28px;box-shadow:var(--shadow-soft)}
+  table.editorial{width:100%;border-collapse:collapse;font-size:14px}
+  table.editorial thead th{text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--navy-muted);padding:12px 14px}
+  table.editorial tbody td{padding:14px 14px;color:var(--navy)}
+  table.editorial tbody tr:nth-child(even) td{background:var(--surface-low)}
+  table.editorial tbody tr:hover td{background:var(--surface-high)}
+  table.editorial tbody tr td:first-child{border-radius:12px 0 0 12px}
+  table.editorial tbody tr td:last-child{border-radius:0 12px 12px 0}
+  table.editorial td.num{font-variant-numeric:tabular-nums;font-weight:500}
+  .delta-up{color:var(--green);font-weight:500;font-size:13px}
+  .delta-down{color:var(--red);font-weight:500;font-size:13px}
+  .pp-up{color:var(--green)}.pp-down{color:var(--red)}
+  .stat-card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px 26px;box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:8px}
+  .stat-eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--navy-muted)}
+  .stat-num{font-size:2.5rem;font-weight:700;letter-spacing:-.035em;line-height:1}
+  .stat-foot{font-size:13px;color:var(--navy-muted)}
+  .bars{display:flex;flex-direction:column;gap:10px}
+  .bar-row{display:grid;grid-template-columns:180px 1fr 50px;align-items:center;gap:14px;padding:6px 0}
+  .bar-label{font-size:13.5px;color:var(--navy);font-weight:500}
+  .bar-track{height:10px;background:var(--surface-variant);border-radius:var(--radius-pill);overflow:hidden}
+  .bar-fill{height:100%;border-radius:var(--radius-pill);background:linear-gradient(90deg,var(--teal),var(--blue))}
+  .bar-fill.warm{background:linear-gradient(90deg,var(--yellow-deep),var(--yellow))}
+  .bar-fill.cool{background:linear-gradient(90deg,var(--navy),var(--blue))}
+  .bar-value{font-size:13.5px;font-weight:600;color:var(--navy);text-align:right;font-variant-numeric:tabular-nums}
+  /* Channel cards */
+  .channel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:4px}
+  .channel-card{background:var(--surface-low);border-radius:var(--radius-lg);padding:18px 20px}
+  .channel-name{font-size:13px;font-weight:600;margin-bottom:12px;color:var(--navy)}
+  .channel-stat{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+  .channel-label{font-size:11px;color:var(--navy-muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .channel-val{font-size:1.1rem;font-weight:700;letter-spacing:-.02em}
+  .channel-bar{height:6px;background:var(--surface-variant);border-radius:var(--radius-pill);overflow:hidden;margin-top:8px}
+  .channel-bar-fill{height:100%;border-radius:var(--radius-pill);background:linear-gradient(90deg,var(--teal),var(--blue))}
+  .channel-card.highlight{background:var(--teal-soft);border:1px solid rgba(37,97,111,.2)}
+  .channel-card.warning{background:var(--red-soft);border:1px solid rgba(180,58,74,.15)}
+  .insight{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px 28px;box-shadow:var(--shadow-soft);position:relative}
+  .insight::before{content:'';position:absolute;left:0;top:28px;bottom:28px;width:4px;border-radius:var(--radius-pill);background:var(--teal)}
+  .insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .insight h4{font-size:15px;font-weight:600;color:var(--navy);text-transform:none;letter-spacing:-.01em;margin-bottom:8px}
+  .insight p{font-size:14px;line-height:1.6;color:var(--navy-soft)}
+  .insight .reco{display:inline-block;margin-top:10px;padding:6px 12px;background:var(--teal);color:#fff;font-weight:600;font-size:12px;border-radius:var(--radius-pill);text-transform:uppercase;letter-spacing:.05em}
+  footer{margin-top:60px;text-align:center;color:var(--navy-faint);font-size:12px;text-transform:uppercase;letter-spacing:.1em}
+  @media(max-width:980px){.hero,.grid-2,.grid-3,.channel-grid,.insight-grid{grid-template-columns:1fr}.kpi-strip{grid-template-columns:1fr 1fr}.hero h1{font-size:2.25rem}.page{padding:20px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-coin">R</div>
+      <div><div class="brand-name">Relif <span class="brand-sub">· AI Lead Management</span></div></div>
+    </div>
+    <div class="role-nav">
+      <a href="producto.html" class="role-btn">Jefe de Producto</a>
+      <a href="captacion.html" class="role-btn active">Captación</a>
+      <a href="comercial.html" class="role-btn">Líder Comercial</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-card">
+      <div class="badges">
+        <span class="badge badge-yellow">Diario</span>
+        <span class="badge badge-teal">Captación de Clientes</span>
+        <span class="badge badge-blue">BCI · Canales Digitales</span>
+      </div>
+      <h1>Captación<br>03 May 2026</h1>
+      <div class="hero-subtitle">Domingo · Performance de canales y activación de leads</div>
+      <div class="hero-meta">Generado 04 May 2026, 06:15 · Vista: Captación</div>
+    </div>
+    <div class="kpi-strip">
+      <div class="kpi"><div class="kpi-label">Leads captados</div><div class="kpi-value">612</div><div class="kpi-delta">↑ 8% vs prom. 7d</div></div>
+      <div class="kpi"><div class="kpi-label">Tasa de activación</div><div class="kpi-value">32.4%</div><div class="kpi-delta">↑ 1.8pp vs prom. 7d</div></div>
+      <div class="kpi"><div class="kpi-label">Mejor canal hoy</div><div class="kpi-value">App BCI</div><div class="kpi-sub">44.2% de activación</div></div>
+      <div class="kpi"><div class="kpi-label">Canal a revisar</div><div class="kpi-value">TikTok</div><div class="kpi-sub">9 leads · 0% activación</div></div>
+    </div>
+  </div>
+
+  <!-- KPIs captación -->
+  <div class="section">
+    <div class="grid grid-3" style="margin-bottom:0">
+      <div class="stat-card">
+        <div class="stat-eyebrow">Leads con simulación</div>
+        <div class="stat-num">387</div>
+        <div class="stat-foot">63.2% del total captado</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-eyebrow">Pre-aprobados</div>
+        <div class="stat-num" style="color:var(--green)">152</div>
+        <div class="stat-foot">39.3% de los que simularon</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-eyebrow">No contesta (drop)</div>
+        <div class="stat-num" style="color:var(--red)">238</div>
+        <div class="stat-foot">38.9% del total · oportunidad re-eng.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Canales -->
+  <div class="section">
+    <div class="section-header"><div><div class="section-eyebrow">Performance de canales</div><div class="section-title">¿De dónde viene cada lead y qué tan bien convierte?</div></div><div class="section-sub">Δ vs promedio últimos 7 días</div></div>
+    <div class="table-wrap" style="margin-bottom:24px">
+      <table class="editorial">
+        <thead><tr><th>Canal / Origen</th><th>Leads</th><th>Δ vs 7d</th><th>Derivados</th><th>% Activación</th><th>Δ pp</th><th>Señal</th></tr></thead>
+        <tbody>
+          <tr><td><strong>App BCI</strong></td><td class="num">52</td><td class="num"><span class="delta-down">↓9%</span></td><td class="num">23</td><td class="num"><strong>44.2%</strong></td><td class="num"><span class="pp-up">+5.9pp</span></td><td><span style="background:var(--green-soft);color:var(--green);padding:3px 10px;border-radius:var(--radius-pill);font-size:11px;font-weight:600">Top canal</span></td></tr>
+          <tr><td><strong>Salesforce Consumo</strong></td><td class="num">118</td><td class="num"><span class="delta-up">↑6%</span></td><td class="num">51</td><td class="num"><strong>43.2%</strong></td><td class="num"><span class="pp-up">+3.6pp</span></td><td><span style="background:var(--green-soft);color:var(--green);padding:3px 10px;border-radius:var(--radius-pill);font-size:11px;font-weight:600">Sólido</span></td></tr>
+          <tr><td><strong>CAMPAÑA — DAP Preferencial</strong></td><td class="num">21</td><td class="num"><span class="delta-up">↑60%</span></td><td class="num">9</td><td class="num"><strong>42.9%</strong></td><td class="num"><span class="pp-up">+8.7pp</span></td><td><span style="background:var(--yellow);color:var(--navy);padding:3px 10px;border-radius:var(--radius-pill);font-size:11px;font-weight:600">Escalar</span></td></tr>
+          <tr><td>Remarketing</td><td class="num">38</td><td class="num"><span class="delta-up">↑21%</span></td><td class="num">12</td><td class="num">31.6%</td><td class="num"><span class="pp-up">+1.4pp</span></td><td><span style="background:var(--blue-soft);color:var(--blue);padding:3px 10px;border-radius:var(--radius-pill);font-size:11px;font-weight:600">Estable</span></td></tr>
+          <tr><td>Página Web</td><td class="num">152</td><td class="num"><span class="delta-up">↑11%</span></td><td class="num">49</td><td class="num">32.2%</td><td class="num"><span class="pp-up">+2.1pp</span></td><td><span style="background:var(--blue-soft);color:var(--blue);padding:3px 10px;border-radius:var(--radius-pill);font-size:11px;font-weight:600">Estable</span></td></tr>
+          <tr><td>Google Ads</td><td class="num">96</td><td class="num"><span class="delta-up">↑19%</span></td><td class="num">31</td><td class="num">32.3%</td><td class="num"><span class="pp-down">-3.1pp</span></td><td><span style="background:var(--surface-variant);color:var(--navy-muted);padding:3px 10px;border-radius:var(--radius-pill);font-size:11px;font-weight:600">Revisar</span></td></tr>
+          <tr><td>Meta</td><td class="num">58</td><td class="num"><span class="delta-up">↑24%</span></td><td class="num">14</td><td class="num">24.1%</td><td class="num"><span class="pp-down">-5.6pp</span></td><td><span style="background:var(--surface-variant);color:var(--navy-muted);padding:3px 10px;border-radius:var(--radius-pill);font-size:11px;font-weight:600">Revisar</span></td></tr>
+          <tr><td>Salesforce Hipotecario</td><td class="num">68</td><td class="num"><span class="delta-up">↑8%</span></td><td class="num">9</td><td class="num">13.2%</td><td class="num"><span class="pp-down">-4.8pp</span></td><td><span style="background:var(--red-soft);color:var(--red);padding:3px 10px;border-radius:var(--radius-pill);font-size:11px;font-weight:600">Problema</span></td></tr>
+          <tr><td>TikTok</td><td class="num">9</td><td class="num"><span class="delta-down">↓48%</span></td><td class="num">0</td><td class="num">0%</td><td class="num"><span class="pp-down">-18.4pp</span></td><td><span style="background:var(--red-soft);color:var(--red);padding:3px 10px;border-radius:var(--radius-pill);font-size:11px;font-weight:600">Pausar</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="channel-grid">
+      <div class="channel-card highlight">
+        <div class="channel-name">🏆 App BCI — mejor activación</div>
+        <div class="channel-stat"><span class="channel-label">Leads</span><span class="channel-val">52</span></div>
+        <div class="channel-stat"><span class="channel-label">Activación</span><span class="channel-val" style="color:var(--teal)">44.2%</span></div>
+        <div class="channel-bar"><div class="channel-bar-fill" style="width:44%"></div></div>
+        <p style="font-size:12px;color:var(--teal);margin-top:10px;font-weight:500">Volumen bajo — oportunidad de escalar inversión en pauta in-app</p>
+      </div>
+      <div class="channel-card highlight">
+        <div class="channel-name">📈 Campaña DAP Preferencial</div>
+        <div class="channel-stat"><span class="channel-label">Crecimiento</span><span class="channel-val" style="color:var(--teal)">+60%</span></div>
+        <div class="channel-stat"><span class="channel-label">Activación</span><span class="channel-val">42.9%</span></div>
+        <div class="channel-bar"><div class="channel-bar-fill" style="width:43%"></div></div>
+        <p style="font-size:12px;color:var(--teal);margin-top:10px;font-weight:500">Mayor ROI del día — segmentar por saldo cta. vista &gt; $50M</p>
+      </div>
+      <div class="channel-card warning">
+        <div class="channel-name">⚠️ TikTok — sin conversión</div>
+        <div class="channel-stat"><span class="channel-label">Leads</span><span class="channel-val">9</span></div>
+        <div class="channel-stat"><span class="channel-label">Activación</span><span class="channel-val" style="color:var(--red)">0%</span></div>
+        <div class="channel-bar"><div class="channel-bar-fill" style="width:0%"></div></div>
+        <p style="font-size:12px;color:var(--red);margin-top:10px;font-weight:500">Caída del -48% en leads y 0% conversión — pausar y reasignar budget</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Producto captación -->
+  <div class="section">
+    <div class="section-header"><div><div class="section-eyebrow">Demanda por producto</div><div class="section-title">¿Qué están buscando los leads?</div></div></div>
+    <div class="grid grid-2">
+      <div class="table-wrap">
+        <h3>📊 Volumen y activación por producto</h3>
+        <table class="editorial">
+          <thead><tr><th>Producto</th><th>Leads</th><th>Δ vs 7d</th><th>Activados</th><th>% Activ.</th></tr></thead>
+          <tbody>
+            <tr><td>Crédito Consumo</td><td class="num">224</td><td class="num"><span class="delta-up">↑11%</span></td><td class="num">87</td><td class="num">38.8% <span class="pp-up">+2.4pp</span></td></tr>
+            <tr><td>Hipotecario</td><td class="num">147</td><td class="num"><span class="delta-up">↑6%</span></td><td class="num">27</td><td class="num">18.4% <span class="pp-down">-5.2pp</span></td></tr>
+            <tr><td>Refinanciamiento</td><td class="num">98</td><td class="num"><span class="delta-up">↑42%</span></td><td class="num">41</td><td class="num">41.8% <span class="pp-up">+6.1pp</span></td></tr>
+            <tr><td>DAP</td><td class="num">71</td><td class="num"><span class="delta-up">↑28%</span></td><td class="num">29</td><td class="num">40.8% <span class="pp-up">+4.2pp</span></td></tr>
+            <tr><td>Tarjeta de Crédito</td><td class="num">42</td><td class="num"><span class="delta-down">↓18%</span></td><td class="num">6</td><td class="num">14.2% <span class="pp-down">-7.3pp</span></td></tr>
+            <tr><td>Crédito Automotriz</td><td class="num">14</td><td class="num"><span class="delta-up">↑9%</span></td><td class="num">5</td><td class="num">35.7% <span class="pp-up">+1.4pp</span></td></tr>
+            <tr><td>Línea de Crédito</td><td class="num">11</td><td class="num"><span class="delta-down">↓31%</span></td><td class="num">2</td><td class="num">18.2% <span class="pp-down">-9.5pp</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>💬 ¿Qué preguntan los leads?</h3>
+        <p style="color:var(--navy-muted);font-size:13px;margin-bottom:18px">Top tópicos detectados en conversaciones</p>
+        <div class="bars">
+          <div class="bar-row"><div class="bar-label">Tasa de interés</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-value">312</div></div>
+          <div class="bar-row"><div class="bar-label">Cuota mensual</div><div class="bar-track"><div class="bar-fill" style="width:92%"></div></div><div class="bar-value">287</div></div>
+          <div class="bar-row"><div class="bar-label">Simulación</div><div class="bar-track"><div class="bar-fill" style="width:81%"></div></div><div class="bar-value">253</div></div>
+          <div class="bar-row"><div class="bar-label">Pre-aprobación</div><div class="bar-track"><div class="bar-fill" style="width:63%"></div></div><div class="bar-value">198</div></div>
+          <div class="bar-row"><div class="bar-label">Plazo</div><div class="bar-track"><div class="bar-fill" style="width:56%"></div></div><div class="bar-value">176</div></div>
+          <div class="bar-row"><div class="bar-label">Portabilidad / Refi</div><div class="bar-track"><div class="bar-fill" style="width:31%"></div></div><div class="bar-value">98</div></div>
+          <div class="bar-row"><div class="bar-label">DICOM / Boletín</div><div class="bar-track"><div class="bar-fill" style="width:21%"></div></div><div class="bar-value">64</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drop reasons -->
+  <div class="section">
+    <div class="section-header"><div><div class="section-eyebrow">Razones de pérdida</div><div class="section-title">¿Por qué se van sin convertir?</div></div></div>
+    <div class="card">
+      <div class="bars">
+        <div class="bar-row"><div class="bar-label">Cliente dejó de contestar</div><div class="bar-track"><div class="bar-fill warm" style="width:100%"></div></div><div class="bar-value">238 <span style="font-size:11px;color:var(--navy-muted)">(47.8%)</span></div></div>
+        <div class="bar-row"><div class="bar-label">Pre-aprobado y derivado ✓</div><div class="bar-track"><div class="bar-fill cool" style="width:41%"></div></div><div class="bar-value">98</div></div>
+        <div class="bar-row"><div class="bar-label">Resolvió dudas ✓</div><div class="bar-track"><div class="bar-fill cool" style="width:26%"></div></div><div class="bar-value">61</div></div>
+        <div class="bar-row"><div class="bar-label">Documentos pendientes</div><div class="bar-track"><div class="bar-fill warm" style="width:18%"></div></div><div class="bar-value">42</div></div>
+        <div class="bar-row"><div class="bar-label">Rechazado por DICOM</div><div class="bar-track"><div class="bar-fill warm" style="width:12%"></div></div><div class="bar-value">28</div></div>
+        <div class="bar-row"><div class="bar-label">Renta no califica</div><div class="bar-track"><div class="bar-fill warm" style="width:7%"></div></div><div class="bar-value">17</div></div>
+        <div class="bar-row"><div class="bar-label">No validó identidad</div><div class="bar-track"><div class="bar-fill warm" style="width:4%"></div></div><div class="bar-value">9</div></div>
+      </div>
+      <div style="margin-top:20px;padding:14px 18px;background:var(--teal-soft);border-radius:var(--radius-md);font-size:13.5px;color:var(--teal);line-height:1.6">
+        <strong>238 leads con silencio</strong> son la mayor oportunidad de captación: ya mostraron intención, ya pasaron por el funnel. Una campaña de re-engagement en 48h puede recuperar entre 15–25% de este volumen.
+      </div>
+    </div>
+  </div>
+
+  <!-- Insights captación -->
+  <div class="section">
+    <div class="section-header"><div><div class="section-eyebrow">Insights de captación</div><div class="section-title">Acciones de canal para mañana</div></div></div>
+    <div class="insight-grid">
+      <div class="insight"><h4>Pausar TikTok — reasignar a App BCI y Remarketing</h4><p>TikTok cayó -48% en leads y registró 0% de activación hoy. Sin señal de mejora. App BCI tiene 44.2% de activación con volumen escalable.</p><p style="margin-top:8px">Reasignar presupuesto TikTok a App BCI y Remarketing (31.6%) para recuperar eficiencia de captación esta semana.</p><span class="reco">Pausar TikTok hoy</span></div>
+      <div class="insight"><h4>Escalar CAMPAÑA DAP Preferencial — mejor ROI del día</h4><p>+60% de crecimiento y 42.9% de activación. El segmento responde: cliente con saldo &gt;$50M en cuenta vista es el perfil ideal.</p><p style="margin-top:8px">Segmentar pauta por saldo declarado o estimado. Replicar creatividad y mensaje a segmentos de ahorro e inversión.</p><span class="reco">Escalar inversión DAP</span></div>
+      <div class="insight"><h4>Refinanciamiento +42%: el segmento que más creció</h4><p>98 leads de portabilidad con alta intención de cambio. Son clientes que ya tienen crédito — el costo de adquisición es menor y la conversión es mayor (41.8%).</p><p style="margin-top:8px">Activar pauta específica de portabilidad financiera en Google y Meta con mensaje de "baja tu cuota hoy".</p><span class="reco">Pauta portabilidad</span></div>
+      <div class="insight"><h4>Re-engagement 48h para los 238 silenciosos</h4><p>238 leads no respondieron. La mayoría preguntó por tasa y cuota — hay intención clara. El momento de contacto pasó, no el interés.</p><p style="margin-top:8px">Campaña WhatsApp con oferta diferenciada por producto. Consumo: cuota diferencial, Hipotecario: tasación gratis, DAP: tasa garantizada hasta viernes.</p><span class="reco">Re-engagement 48h</span></div>
+    </div>
+  </div>
+
+  <footer>Reporte generado por Relif · AI Lead Management para Banco BCI · Vista: Captación de Clientes</footer>
+</div>
+</body>
+</html>

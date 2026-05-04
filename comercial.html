@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Reporte Comercial · BCI · 03 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#15183A;--navy-soft:#2A2D55;--navy-muted:#5A5D7E;--navy-faint:#9598B0;--yellow:#F9D00A;--yellow-deep:#705D00;--yellow-soft:#FDD414;--surface:#FBF8FF;--surface-low:#F4F2FF;--surface-lowest:#FFFFFF;--surface-variant:#ECE9F7;--surface-high:#EDEAFB;--teal:#25616F;--teal-soft:#DBEEF1;--blue:#2C5889;--blue-soft:#DDE7F4;--green:#2F7A5B;--green-soft:#DEEFE6;--red:#B43A4A;--red-soft:#F6DEE2;--shadow-soft:0 12px 32px rgba(21,24,58,.06);--shadow-medium:0 18px 48px rgba(21,24,58,.08);--radius-xl:1.5rem;--radius-lg:1.125rem;--radius-md:.75rem;--radius-pill:999px}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--surface);color:var(--navy);font-family:'Jost',-apple-system,sans-serif;font-weight:400;line-height:1.5;-webkit-font-smoothing:antialiased;letter-spacing:-.005em}
+  a{color:var(--blue);text-decoration:none;transition:opacity .15s}a:hover{opacity:.7}
+  .page{max-width:1320px;margin:0 auto;padding:32px 40px 80px}
+  .role-nav{display:flex;gap:8px;background:rgba(255,255,255,.7);backdrop-filter:blur(16px);padding:8px;border-radius:var(--radius-pill);box-shadow:var(--shadow-soft);margin-bottom:24px;width:fit-content}
+  .role-btn{padding:8px 20px;border-radius:var(--radius-pill);font-size:13px;font-weight:600;text-decoration:none;color:var(--navy-muted);transition:all .15s}
+  .role-btn.active{background:var(--green);color:#fff}
+  .role-btn:hover:not(.active){background:var(--surface-variant);opacity:1}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(255,255,255,.65);backdrop-filter:blur(16px);border-radius:var(--radius-pill);box-shadow:var(--shadow-soft);margin-bottom:24px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand-coin{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--yellow-soft),var(--yellow));display:grid;place-items:center;font-weight:700;color:var(--navy);font-size:15px;box-shadow:inset 0 -2px 0 rgba(112,93,0,.18),0 4px 12px rgba(249,208,10,.35)}
+  .brand-name{font-weight:600;letter-spacing:-.02em;font-size:17px}
+  .brand-sub{color:var(--navy-muted);font-size:13px;margin-left:4px}
+  .hero{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;margin-bottom:32px}
+  .hero-card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:36px 40px;box-shadow:var(--shadow-soft);position:relative;overflow:hidden}
+  .hero-card::after{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(47,122,91,.12),transparent 70%);pointer-events:none}
+  .badges{display:flex;gap:8px;margin-bottom:20px}
+  .badge{padding:6px 14px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+  .badge-yellow{background:var(--yellow);color:var(--navy)}
+  .badge-green{background:var(--green-soft);color:var(--green)}
+  .badge-blue{background:var(--blue-soft);color:var(--blue)}
+  .hero h1{font-size:3.25rem;font-weight:700;letter-spacing:-.035em;line-height:1.05;margin-bottom:12px}
+  .hero-subtitle{color:var(--navy-muted);font-size:17px;margin-bottom:8px}
+  .hero-meta{color:var(--navy-faint);font-size:13px;text-transform:uppercase;letter-spacing:.05em;font-weight:500}
+  .kpi-strip{background:var(--green);color:#FFF;border-radius:var(--radius-xl);padding:32px;box-shadow:var(--shadow-medium);display:grid;grid-template-columns:repeat(2,1fr);gap:24px;position:relative;overflow:hidden}
+  .kpi-strip::before{content:'';position:absolute;bottom:-30px;left:-30px;width:120px;height:120px;border-radius:50%;background:#fff;opacity:.08}
+  .kpi{position:relative}
+  .kpi-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;color:rgba(255,255,255,.65);margin-bottom:8px}
+  .kpi-value{font-size:2.25rem;font-weight:700;letter-spacing:-.03em;line-height:1}
+  .kpi-delta{margin-top:6px;font-size:13px;font-weight:500;color:var(--yellow)}
+  .kpi-sub{color:rgba(255,255,255,.65);font-size:13px;margin-top:4px}
+  .section{margin-bottom:40px}
+  .section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;padding:0 4px}
+  .section-title{font-size:1.5rem;font-weight:700;letter-spacing:-.025em}
+  .section-eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:600;color:var(--navy-muted);margin-bottom:6px}
+  .section-sub{color:var(--navy-muted);font-size:14px}
+  .card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:28px 32px;box-shadow:var(--shadow-soft)}
+  .card h3{font-size:1.0625rem;font-weight:600;letter-spacing:-.015em;margin-bottom:14px}
+  .grid{display:grid;gap:24px}
+  .grid-2{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .grid-asym{grid-template-columns:1.5fr 1fr}
+  .table-wrap{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px 28px;box-shadow:var(--shadow-soft)}
+  table.editorial{width:100%;border-collapse:collapse;font-size:14px}
+  table.editorial thead th{text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--navy-muted);padding:12px 14px}
+  table.editorial tbody td{padding:14px 14px;color:var(--navy)}
+  table.editorial tbody tr:nth-child(even) td{background:var(--surface-low)}
+  table.editorial tbody tr:hover td{background:var(--surface-high)}
+  table.editorial tbody tr td:first-child{border-radius:12px 0 0 12px}
+  table.editorial tbody tr td:last-child{border-radius:0 12px 12px 0}
+  table.editorial td.num{font-variant-numeric:tabular-nums;font-weight:500}
+  .delta-up{color:var(--green);font-weight:500;font-size:13px}
+  .delta-down{color:var(--red);font-weight:500;font-size:13px}
+  .stat-card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px 26px;box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:8px}
+  .stat-eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--navy-muted)}
+  .stat-num{font-size:2.5rem;font-weight:700;letter-spacing:-.035em;line-height:1}
+  .stat-foot{font-size:13px;color:var(--navy-muted)}
+  /* Exec cards */
+  .exec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:24px}
+  .exec-card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px;box-shadow:var(--shadow-soft);position:relative;overflow:hidden}
+  .exec-card.top::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--green),var(--teal))}
+  .exec-card.alert::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+  .exec-name{font-size:16px;font-weight:700;margin-bottom:2px}
+  .exec-role{font-size:12px;color:var(--navy-muted);margin-bottom:16px}
+  .exec-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .exec-stat{background:var(--surface-low);border-radius:var(--radius-md);padding:10px 12px}
+  .exec-stat-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--navy-muted);margin-bottom:4px}
+  .exec-stat-val{font-size:1.25rem;font-weight:700;letter-spacing:-.02em;line-height:1}
+  /* Conv cards */
+  .conv-card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px 26px;box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:16px}
+  .conv-header{display:flex;align-items:flex-start;gap:12px}
+  .conv-avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;background:var(--surface-variant);color:var(--navy)}
+  .conv-avatar.positive{background:var(--green-soft);color:var(--green)}
+  .conv-avatar.cross{background:var(--yellow);color:var(--yellow-deep)}
+  .conv-avatar.alert{background:var(--red-soft);color:var(--red)}
+  .conv-title-block{flex:1}
+  .conv-title{font-size:15px;font-weight:600;line-height:1.3;margin-bottom:4px}
+  .conv-link{font-size:12px;color:var(--blue);font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+  .conv-insight{background:var(--surface-low);border-radius:var(--radius-md);padding:14px 16px;font-size:13.5px;color:var(--navy-soft);line-height:1.55}
+  .conv-thread{display:flex;flex-direction:column;gap:10px}
+  .msg{display:flex;max-width:85%}
+  .msg.client{align-self:flex-end}
+  .msg.agent{align-self:flex-start}
+  .bubble{padding:10px 14px;border-radius:14px;font-size:13.5px;line-height:1.5}
+  .msg.agent .bubble{background:var(--surface-variant);color:var(--navy);border-bottom-left-radius:4px}
+  .msg.client .bubble{background:var(--navy);color:#FFF;border-bottom-right-radius:4px}
+  .cross-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:var(--yellow);color:var(--yellow-deep);font-weight:700;font-size:11px;border-radius:var(--radius-pill);text-transform:uppercase;letter-spacing:.05em;margin-top:4px}
+  /* Pending */
+  .pending-list{display:flex;flex-direction:column;gap:8px}
+  .pending-row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--surface-low);border-radius:var(--radius-md)}
+  .pending-name{font-size:14px;font-weight:500}
+  .pending-count{font-weight:700;font-variant-numeric:tabular-nums}
+  /* Insight */
+  .insight{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px 28px;box-shadow:var(--shadow-soft);position:relative}
+  .insight::before{content:'';position:absolute;left:0;top:28px;bottom:28px;width:4px;border-radius:var(--radius-pill);background:var(--green)}
+  .insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .insight h4{font-size:15px;font-weight:600;color:var(--navy);text-transform:none;letter-spacing:-.01em;margin-bottom:8px}
+  .insight p{font-size:14px;line-height:1.6;color:var(--navy-soft)}
+  .insight .reco{display:inline-block;margin-top:10px;padding:6px 12px;background:var(--green);color:#fff;font-weight:600;font-size:12px;border-radius:var(--radius-pill);text-transform:uppercase;letter-spacing:.05em}
+  footer{margin-top:60px;text-align:center;color:var(--navy-faint);font-size:12px;text-transform:uppercase;letter-spacing:.1em}
+  @media(max-width:980px){.hero,.grid-2,.grid-3,.exec-grid,.grid-asym,.insight-grid{grid-template-columns:1fr}.kpi-strip{grid-template-columns:1fr 1fr}.hero h1{font-size:2.25rem}.page{padding:20px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-coin">R</div>
+      <div><div class="brand-name">Relif <span class="brand-sub">· AI Lead Management</span></div></div>
+    </div>
+    <div class="role-nav">
+      <a href="producto.html" class="role-btn">Jefe de Producto</a>
+      <a href="captacion.html" class="role-btn">Captación</a>
+      <a href="comercial.html" class="role-btn active">Líder Comercial</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-card">
+      <div class="badges">
+        <span class="badge badge-yellow">Diario</span>
+        <span class="badge badge-green">Líder Comercial</span>
+        <span class="badge badge-blue">BCI · Las Condes</span>
+      </div>
+      <h1>Cierre Comercial<br>03 May 2026</h1>
+      <div class="hero-subtitle">Domingo · Sucursal Las Condes · 3 ejecutivos activos</div>
+      <div class="hero-meta">Generado 04 May 2026, 06:15 · Vista: Líder Comercial</div>
+    </div>
+    <div class="kpi-strip">
+      <div class="kpi"><div class="kpi-label">Derivados a ejecutivo</div><div class="kpi-value">198</div><div class="kpi-delta">32.4% de los leads</div></div>
+      <div class="kpi"><div class="kpi-label">Créditos cursados</div><div class="kpi-value">38</div><div class="kpi-delta">↑ vs 31 prom. 7d</div></div>
+      <div class="kpi"><div class="kpi-label">Monto cursado</div><div class="kpi-value">$487M</div><div class="kpi-sub">CLP · sucursal Las Condes</div></div>
+      <div class="kpi"><div class="kpi-label">Tiempo resp. prom.</div><div class="kpi-value">2h 14m</div><div class="kpi-sub">SLA objetivo &lt; 1h</div></div>
+    </div>
+  </div>
+
+  <!-- KPIs comerciales -->
+  <div class="section">
+    <div class="grid grid-3">
+      <div class="stat-card">
+        <div class="stat-eyebrow">Leads gestionados hoy</div>
+        <div class="stat-num">142</div>
+        <div class="stat-foot">71.7% del total derivado</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-eyebrow">Tasa de cierre</div>
+        <div class="stat-num" style="color:var(--green)">26.8%</div>
+        <div class="stat-foot">38 cursados / 142 gestionados</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-eyebrow">Ticket promedio cursado</div>
+        <div class="stat-num">$12.8M</div>
+        <div class="stat-foot">CLP por crédito</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Performance ejecutivos -->
+  <div class="section">
+    <div class="section-header"><div><div class="section-eyebrow">Desempeño comercial</div><div class="section-title">Performance por ejecutivo</div></div><div class="section-sub">Sucursal Apoquindo 4001 · 3 activos hoy</div></div>
+
+    <div class="exec-grid">
+      <div class="exec-card top">
+        <div class="exec-name">Felipe Astorga</div>
+        <div class="exec-role">Senior · Consumo · 4 años</div>
+        <div class="exec-stats">
+          <div class="exec-stat"><div class="exec-stat-label">Asignados</div><div class="exec-stat-val">58</div></div>
+          <div class="exec-stat"><div class="exec-stat-label">Contactados</div><div class="exec-stat-val" style="color:var(--green)">93%</div></div>
+          <div class="exec-stat"><div class="exec-stat-label">Cursados</div><div class="exec-stat-val" style="color:var(--green)">21</div></div>
+          <div class="exec-stat"><div class="exec-stat-label">Monto</div><div class="exec-stat-val">$184M</div></div>
+          <div class="exec-stat"><div class="exec-stat-label">T. respuesta</div><div class="exec-stat-val" style="color:var(--green)">38m</div></div>
+          <div class="exec-stat"><div class="exec-stat-label">% Conv.</div><div class="exec-stat-val" style="color:var(--green)">36.2%</div></div>
+        </div>
+      </div>
+      <div class="exec-card top">
+        <div class="exec-name">Macarena Ríos</div>
+        <div class="exec-role">Banca Preferencial · DAP · Hipotecario</div>
+        <div class="exec-stats">
+          <div class="exec-stat"><div class="exec-stat-label">Asignados</div><div class="exec-stat-val">29</div></div>
+          <div class="exec-stat"><div class="exec-stat-label">Contactados</div><div class="exec-stat-val" style="color:var(--green)">97%</div></div>
+          <div class="exec-stat"><div class="exec-stat-label">Cursados</div><div class="exec-stat-val" style="color:var(--green)">12</div></div>
+          <div class="exec-stat"><div class="exec-stat-val" style="color:var(--green)">$268M</div><div class="exec-stat-label">Monto ↑</div></div>
+          <div class="exec-stat"><div class="exec-stat-label">T. respuesta</div><div class="exec-stat-val" style="color:var(--green)">22m</div></div>
+          <div class="exec-stat"><div class="exec-stat-label">% Conv.</div><div class="exec-stat-val" style="color:var(--green)">41.4%</div></div>
+        </div>
+      </div>
+      <div class="exec-card alert">
+        <div class="exec-name">Rodrigo Tapia</div>
+        <div class="exec-role">Hipotecario · Refinanciamiento</div>
+        <div class="exec-stats">
+          <div class="exec-stat"><div class="exec-stat-label">Asignados</div><div class="exec-stat-val">55</div></div>
+          <div class="exec-stat"><div class="exec-stat-label">Contactados</div><div class="exec-stat-val" style="color:var(--red)">56%</div></div>
+          <div class="exec-stat"><div class="exec-stat-label">Cursados</div><div class="exec-stat-val" style="color:var(--red)">5</div></div>
+          <div class="exec-stat"><div class="exec-stat-label">Monto</div><div class="exec-stat-val" style="color:var(--red)">$35M</div></div>
+          <div class="exec-stat"><div class="exec-stat-label">T. respuesta</div><div class="exec-stat-val" style="color:var(--red)">5h 48m</div></div>
+          <div class="exec-stat"><div class="exec-stat-label">% Conv.</div><div class="exec-stat-val" style="color:var(--red)">9.1%</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:16px 20px;background:var(--red-soft);border-radius:var(--radius-lg);display:flex;gap:14px;align-items:flex-start">
+      <div style="background:var(--red);width:32px;height:32px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;font-weight:700;color:#fff;font-size:14px">!</div>
+      <div style="font-size:14px;line-height:1.5;color:var(--navy-soft)"><strong style="color:var(--navy)">Alerta Rodrigo Tapia:</strong> 5h 48m de tiempo de respuesta (vs SLA 1h) y 56% contactados. 24 leads de hipotecario llevan más de 4h sin respuesta. Recomendación: redistribuir carga hacia Felipe o asignar apoyo back-office para documentos hipotecarios.</div>
+    </div>
+  </div>
+
+  <!-- Conversaciones con cross-sell -->
+  <div class="section">
+    <div class="section-header"><div><div class="section-eyebrow">Conversaciones comerciales</div><div class="section-title">Cross-sell y oportunidades detectadas</div></div></div>
+
+    <div class="grid grid-2" style="margin-bottom:24px">
+      <div class="conv-card">
+        <div class="conv-header">
+          <div class="conv-avatar positive"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+          <div class="conv-title-block"><div class="conv-title">Pre-aprobación Consumo $12M → Firma agendada</div><a class="conv-link" href="#">Ver cliente →</a></div>
+          <span class="cross-pill">✓ Cerrado</span>
+        </div>
+        <div class="conv-insight">💡 Lead entrega datos completos. Pre-aprobación inmediata por <strong>CLP $12M</strong>, cuota 36m acordada, firma presencial Las Condes agendada para 04-05. Ejecutivo: Felipe Astorga.<br><br><strong>Cross-sell oportunidad:</strong> Cliente tiene contrato indefinido y renta $1.85M. Perfil ideal para Tarjeta BCI y Cuenta Vista con débito automático.</div>
+        <div class="conv-thread">
+          <div class="msg client"><div class="bubble">15.234.567-8 · Renta líquida 1.850.000 · Indefinido. Necesito 12 millones</div></div>
+          <div class="msg agent"><div class="bubble">Pre-aprobación BCI por <strong>CLP $12.000.000</strong>: 36 cuotas de $397.500 (CAE 17.4%). Agendé firma con Felipe Astorga en Las Condes para mañana 11:00.</div></div>
+          <div class="msg client"><div class="bubble">Presencial Las Condes, perfecto</div></div>
+        </div>
+      </div>
+
+      <div class="conv-card">
+        <div class="conv-header">
+          <div class="conv-avatar cross"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div>
+          <div class="conv-title-block"><div class="conv-title">DAP $180M → Banca Preferencial + cross FM</div><a class="conv-link" href="#">Ver cliente →</a></div>
+          <span class="cross-pill">💰 Cross-sell activo</span>
+        </div>
+        <div class="conv-insight">💡 Cliente Preferencial cotiza DAP por <strong>$180M a 90 días</strong>. Pide comparativa con FM Conservador. Aceptó tasa 0.45% mensual y pidió llamada de Macarena Ríos para hoy.<br><br><strong>Cross-sell en curso:</strong> Mix DAP + FM Conservador + Seguro Patrimonial. Margen 3.2x mayor que DAP solo. Macarena debe proponer el bundle en la llamada.</div>
+        <div class="conv-thread">
+          <div class="msg client"><div class="bubble">Tengo 180 millones en cuenta vista BCI. ¿Qué tasa de DAP a 90 días?</div></div>
+          <div class="msg agent"><div class="bubble">Como Preferencial accedes a 0.45% mensual (rentabilidad estimada $2.430.000). DAP 90d garantizado: 1.35% vs FM Conservador 1.12% variable.</div></div>
+          <div class="msg client"><div class="bubble">Sí, que me llame Macarena hoy</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="conv-card">
+        <div class="conv-header">
+          <div class="conv-avatar alert"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2"/></svg></div>
+          <div class="conv-title-block"><div class="conv-title">Hipotecario $95M — 5 días sin respuesta de Rodrigo</div><a class="conv-link" href="#">Ver cliente →</a></div>
+          <span style="background:var(--red-soft);color:var(--red);padding:5px 12px;border-radius:var(--radius-pill);font-size:11px;font-weight:700;white-space:nowrap">⚠ En riesgo</span>
+        </div>
+        <div class="conv-insight">💡 Pre-aprobado por <strong>$95M en Hipotecario</strong>. Lleva 5 días esperando instrucciones de Rodrigo para subir tasación. Vigencia pre-aprobación: hasta 17-05. <strong>Acción urgente:</strong> llamada de Rodrigo hoy o reasignación a otro ejecutivo antes de 19:00.</div>
+        <div class="conv-thread">
+          <div class="msg client"><div class="bubble">Llevo 5 días esperando que el ejecutivo me diga dónde subo la tasación</div></div>
+          <div class="msg agent"><div class="bubble">Escalé tu caso a la jefatura. Rodrigo te llamará hoy antes de las 19:00. Pre-aprobación vigente hasta 17-05-2026.</div></div>
+          <div class="msg client"><div class="bubble">Que me llame Rodrigo o cancelo</div></div>
+        </div>
+      </div>
+
+      <div class="conv-card">
+        <div class="conv-header">
+          <div class="conv-avatar cross"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg></div>
+          <div class="conv-title-block"><div class="conv-title">Refinanciamiento Santander → Bundle Refi + Cta Vista</div><a class="conv-link" href="#">Ver cliente →</a></div>
+          <span class="cross-pill">💰 Oportunidad bundle</span>
+        </div>
+        <div class="conv-insight">💡 Cliente quiere portar hipotecario desde Santander. Agente confundió producto inicialmente (ofreció hipotecario nuevo). Se corrigió y ofreció portabilidad UF+3.95%.<br><br><strong>Cross-sell pendiente:</strong> al confirmar portabilidad, ofrecer Cuenta Vista BCI (0% comisión 12m) + Tarjeta BCI. Clientes refi tienen 2.3x más productos vinculados en promedio.</div>
+        <div class="conv-thread">
+          <div class="msg client"><div class="bubble">Quiero pasar mi hipotecario de Santander a BCI</div></div>
+          <div class="msg agent"><div class="bubble">Para Portabilidad: UF+3.95% con bono de hasta $1M. Necesito último dividendo, saldo deudor y avalúo.</div></div>
+          <div class="msg client"><div class="bubble">Esto es muy enredado, mejor llamo al 600</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pipeline documental -->
+  <div class="section">
+    <div class="section-header"><div><div class="section-eyebrow">Pipeline documental</div><div class="section-title">Estado de carpetas y documentos</div></div><div class="section-sub">412 documentos recibidos hoy</div></div>
+    <div class="grid grid-3" style="margin-bottom:24px">
+      <div class="stat-card">
+        <div class="stat-eyebrow">Carpetas listas para curse</div>
+        <div class="stat-num" style="color:var(--green)">78</div>
+        <div class="stat-foot">52 con curse ya aprobado</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-eyebrow">Documentos pendientes</div>
+        <div class="stat-num" style="color:var(--red)">186</div>
+        <div class="stat-foot">leads con al menos 1 doc. faltante</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-eyebrow">Pre-aprob. vencen en 7d</div>
+        <div class="stat-num" style="color:var(--yellow-deep)">14</div>
+        <div class="stat-foot">$623M en riesgo de caducar</div>
+      </div>
+    </div>
+
+    <div class="grid grid-asym">
+      <div class="table-wrap">
+        <h3>🕐 Solicitudes con documentos atrasados — Top 5</h3>
+        <table class="editorial">
+          <thead><tr><th>Cliente</th><th>Producto</th><th>Monto</th><th>Días</th><th>Falta</th><th>Ejecutivo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Cristián Tapia</strong></td><td>Hipotecario</td><td class="num">$95M</td><td class="num"><span style="color:var(--red);font-weight:700">5d</span></td><td>Tasación · dominio</td><td>Rodrigo T.</td></tr>
+            <tr><td><strong>María Fernández</strong></td><td>Refinanciamiento</td><td class="num">$48M</td><td class="num"><span style="color:var(--red);font-weight:700">4d</span></td><td>Último dividendo</td><td>Felipe A.</td></tr>
+            <tr><td><strong>Juan Pablo Soto</strong></td><td>Consumo</td><td class="num">$18M</td><td class="num"><span style="color:var(--red);font-weight:700">4d</span></td><td>Liquidaciones</td><td>Felipe A.</td></tr>
+            <tr><td><strong>Andrea Muñoz</strong></td><td>Hipotecario</td><td class="num">$72M</td><td class="num"><span style="color:var(--red)">3d</span></td><td>AFP · escritura</td><td>Rodrigo T.</td></tr>
+            <tr><td><strong>Rodrigo Vergara</strong></td><td>Consumo</td><td class="num">$9M</td><td class="num"><span style="color:var(--red)">3d</span></td><td>Cédula vigente</td><td>Felipe A.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>⚠️ Pendientes por tipo</h3>
+        <div class="pending-list">
+          <div class="pending-row"><span class="pending-name">Liquidaciones de sueldo</span><span class="pending-count">71</span></div>
+          <div class="pending-row"><span class="pending-name">Certificado AFP</span><span class="pending-count">54</span></div>
+          <div class="pending-row"><span class="pending-name">Cédula de identidad</span><span class="pending-count">38</span></div>
+          <div class="pending-row"><span class="pending-name">Tasación (Hipotecario)</span><span class="pending-count">23</span></div>
+          <div class="pending-row"><span class="pending-name">Certificado de dominio</span><span class="pending-count">19</span></div>
+        </div>
+        <div style="margin-top:16px;padding:12px 14px;background:var(--yellow);border-radius:var(--radius-md);font-size:13px;color:var(--navy-deep);font-weight:500;line-height:1.5">
+          <strong>14 pre-aprobaciones</strong> suman $623M y vencen entre el 04-05 y 10-05. Re-engagement hoy para no perder el pipeline.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Insights comerciales -->
+  <div class="section">
+    <div class="section-header"><div><div class="section-eyebrow">Insights comerciales</div><div class="section-title">Acciones de venta para mañana</div></div></div>
+    <div class="insight-grid">
+      <div class="insight"><h4>Macarena Ríos: replicar su flujo DAP con otros ejecutivos</h4><p>41.4% conversión, 22m tiempo de respuesta, $268M cursados con solo 29 leads asignados. Flujo Preferencial DAP+FM+Seguro es el de mayor margen.</p><p style="margin-top:8px">Documentar y replicar su script de handoff a Banca Preferencial. Aplicar trigger automático para leads con saldo declarado &gt;$50M.</p><span class="reco">Replicar flujo Macarena</span></div>
+      <div class="insight"><h4>Rodrigo Tapia: redistribuir carga hoy</h4><p>5h 48m de respuesta, 56% contactados, 9.1% conversión. 24 leads de hipotecario llevan más de 4h sin tocar. $623M en pre-aprobaciones en riesgo.</p><p style="margin-top:8px">Redistribuir leads hipotecarios sin contactar a Felipe. Asignar apoyo back-office para documentación y liberar tiempo de gestión de Rodrigo.</p><span class="reco">Redistribuir + apoyo back-office</span></div>
+      <div class="insight"><h4>Bundle Refi completo: 2.3x más productos por cliente</h4><p>98 leads de portabilidad creciendo +42%. Vienen a cambiar banco completo, no solo el crédito. Hoy solo cerramos el crédito.</p><p style="margin-top:8px">Al confirmar portabilidad, ofrecer Cuenta Vista BCI (0% comisión 12m) + Tarjeta BCI. Clientes refi tienen históricamente 2.3x más productos vinculados.</p><span class="reco">Bundle Refi + Cta Vista + Tarjeta</span></div>
+      <div class="insight"><h4>$623M en pre-aprobaciones vencen esta semana</h4><p>14 pre-aprobaciones hipotecarias sin documentación completa. Tasación es el bloqueante en 9 de 14 casos.</p><p style="margin-top:8px">Llamada proactiva de ejecutivos hoy. Ofrecer tasación gratis con convenio BCI para desbloquear. ROI &gt; 1.000x vs ticket promedio.</p><span class="reco">Llamadas hoy + tasación gratis</span></div>
+    </div>
+  </div>
+
+  <footer>Reporte generado por Relif · AI Lead Management para Banco BCI · Vista: Líder Comercial</footer>
+</div>
+</body>
+</html>
