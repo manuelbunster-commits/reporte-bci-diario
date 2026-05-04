@@ -12,8 +12,12 @@
   html,body{background:var(--surface);color:var(--navy);font-family:'Jost',-apple-system,sans-serif;font-weight:400;line-height:1.5;-webkit-font-smoothing:antialiased;letter-spacing:-.005em}
   a{color:var(--blue);text-decoration:none;transition:opacity .15s}a:hover{opacity:.7}
   .page{max-width:1320px;margin:0 auto;padding:32px 40px 80px}
-  .role-nav{display:flex;gap:8px;background:rgba(255,255,255,.7);backdrop-filter:blur(16px);padding:8px;border-radius:var(--radius-pill);box-shadow:var(--shadow-soft);margin-bottom:24px;width:fit-content}
-  .role-btn{padding:8px 20px;border-radius:var(--radius-pill);font-size:13px;font-weight:600;text-decoration:none;color:var(--navy-muted);transition:all .15s}
+  .nav-group{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+  .period-nav{display:flex;gap:6px;background:var(--surface-variant);padding:5px;border-radius:var(--radius-pill)}
+  .period-btn{padding:6px 16px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;text-decoration:none;color:var(--green-deep, #104030);transition:all .15s}
+  .period-btn.active{background:var(--green);color:#fff}
+  .role-nav{display:flex;gap:6px;background:rgba(255,255,255,.7);backdrop-filter:blur(16px);padding:5px;border-radius:var(--radius-pill);box-shadow:var(--shadow-soft)}
+  .role-btn{padding:6px 16px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;text-decoration:none;color:var(--navy-muted);transition:all .15s}
   .role-btn.active{background:var(--green);color:#fff}
   .role-btn:hover:not(.active){background:var(--surface-variant);opacity:1}
   .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(255,255,255,.65);backdrop-filter:blur(16px);border-radius:var(--radius-pill);box-shadow:var(--shadow-soft);margin-bottom:24px}
@@ -119,10 +123,17 @@
       <div class="brand-coin">R</div>
       <div><div class="brand-name">Relif <span class="brand-sub">· AI Lead Management</span></div></div>
     </div>
-    <div class="role-nav">
-      <a href="producto.html" class="role-btn">Jefe de Producto</a>
-      <a href="captacion.html" class="role-btn">Captación</a>
-      <a href="comercial.html" class="role-btn active">Líder Comercial</a>
+    <div class="nav-group">
+      <div class="period-nav">
+        <a href="comercial.html" class="period-btn active">Diario</a>
+        <a href="semanal_comercial.html" class="period-btn">Semanal</a>
+        <a href="mensual_comercial.html" class="period-btn">Mensual</a>
+      </div>
+      <div class="role-nav">
+        <a href="producto.html" class="role-btn">Producto</a>
+        <a href="captacion.html" class="role-btn">Captación</a>
+        <a href="comercial.html" class="role-btn active">Comercial</a>
+      </div>
     </div>
   </div>
 
