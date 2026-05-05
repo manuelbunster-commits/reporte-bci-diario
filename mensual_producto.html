@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Reporte Mensual · Producto · BCI · Abril 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#15183A;--navy-soft:#2A2D55;--navy-muted:#5A5D7E;--navy-faint:#9598B0;--yellow:#F9D00A;--yellow-deep:#705D00;--yellow-soft:#FDD414;--surface:#FBF8FF;--surface-low:#F4F2FF;--surface-lowest:#FFFFFF;--surface-variant:#ECE9F7;--surface-high:#EDEAFB;--teal:#25616F;--teal-soft:#DBEEF1;--blue:#2C5889;--blue-soft:#DDE7F4;--green:#2F7A5B;--green-soft:#DEEFE6;--red:#B43A4A;--red-soft:#F6DEE2;--shadow-soft:0 12px 32px rgba(21,24,58,.06);--shadow-medium:0 18px 48px rgba(21,24,58,.08);--radius-xl:1.5rem;--radius-lg:1.125rem;--radius-md:.75rem;--radius-pill:999px}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--surface);color:var(--navy);font-family:'Jost',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;letter-spacing:-.005em}
+  a{color:var(--blue);text-decoration:none;transition:opacity .15s}a:hover{opacity:.7}
+  .page{max-width:1320px;margin:0 auto;padding:32px 40px 80px}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(255,255,255,.65);backdrop-filter:blur(16px);border-radius:var(--radius-pill);box-shadow:var(--shadow-soft);margin-bottom:24px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand-coin{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#FDD414,#F9D00A);display:grid;place-items:center;font-weight:700;color:var(--navy);font-size:15px;box-shadow:inset 0 -2px 0 rgba(112,93,0,.18),0 4px 12px rgba(249,208,10,.35)}
+  .brand-name{font-weight:600;letter-spacing:-.02em;font-size:17px}
+  .brand-sub{color:var(--navy-muted);font-size:13px;margin-left:4px}
+  .nav-group{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+  .period-nav{display:flex;gap:6px;background:var(--surface-variant);padding:5px;border-radius:var(--radius-pill)}
+  .period-btn{padding:6px 16px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;text-decoration:none;color:var(--navy-muted);transition:all .15s}
+  .period-btn.active{background:var(--navy);color:#fff}
+  .role-nav{display:flex;gap:6px;background:rgba(255,255,255,.7);backdrop-filter:blur(16px);padding:5px;border-radius:var(--radius-pill);box-shadow:var(--shadow-soft)}
+  .role-btn{padding:6px 16px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;text-decoration:none;color:var(--navy-muted);transition:all .15s}
+  .role-btn.active{background:var(--navy);color:#fff}
+  .role-btn:hover:not(.active){background:var(--surface-variant);opacity:1}
+  .hero{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;margin-bottom:32px}
+  .hero-card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:36px 40px;box-shadow:var(--shadow-soft);position:relative;overflow:hidden}
+  .hero-card::after{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(249,208,10,.18),transparent 70%);pointer-events:none}
+  .badges{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+  .badge{padding:6px 14px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+  .badge-yellow{background:var(--yellow);color:var(--navy)}.badge-blue{background:var(--blue-soft);color:var(--blue)}.badge-green{background:var(--green-soft);color:var(--green)}
+  .hero h1{font-size:3rem;font-weight:700;letter-spacing:-.035em;line-height:1.05;margin-bottom:12px}
+  .hero-subtitle{color:var(--navy-muted);font-size:17px;margin-bottom:8px}
+  .hero-meta{color:var(--navy-faint);font-size:13px;text-transform:uppercase;letter-spacing:.05em;font-weight:500}
+  .kpi-strip{background:var(--navy);color:#FFF;border-radius:var(--radius-xl);padding:32px;box-shadow:var(--shadow-medium);display:grid;grid-template-columns:repeat(2,1fr);gap:24px;position:relative;overflow:hidden}
+  .kpi-strip::before{content:'';position:absolute;bottom:-30px;left:-30px;width:120px;height:120px;border-radius:50%;background:var(--yellow);opacity:.12}
+  .kpi{position:relative}
+  .kpi-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;color:rgba(255,255,255,.55);margin-bottom:8px}
+  .kpi-value{font-size:2.25rem;font-weight:700;letter-spacing:-.03em;line-height:1}
+  .kpi-delta{margin-top:6px;font-size:13px;font-weight:500;color:var(--yellow)}
+  .kpi-sub{color:rgba(255,255,255,.6);font-size:13px;margin-top:4px}
+  .section{margin-bottom:40px}
+  .section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;padding:0 4px}
+  .section-title{font-size:1.5rem;font-weight:700;letter-spacing:-.025em}
+  .section-eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:600;color:var(--navy-muted);margin-bottom:6px}
+  .section-sub{color:var(--navy-muted);font-size:14px}
+  .card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:28px 32px;box-shadow:var(--shadow-soft)}
+  .card h3{font-size:1.0625rem;font-weight:600;letter-spacing:-.015em;margin-bottom:14px}
+  .grid{display:grid;gap:24px}.grid-2{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(3,1fr)}.grid-4{grid-template-columns:repeat(4,1fr)}
+  .stat-card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px 26px;box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:8px}
+  .stat-eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--navy-muted)}
+  .stat-num{font-size:2.5rem;font-weight:700;letter-spacing:-.035em;line-height:1}
+  .stat-foot{font-size:13px;color:var(--navy-muted)}
+  /* Weekly trend bars (4 weeks in month) */
+  .trend-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:end;padding:24px 0 8px}
+  .trend-week{display:flex;flex-direction:column;align-items:center;gap:8px}
+  .trend-bar-wrap{width:100%;display:flex;flex-direction:column;align-items:center;gap:4px;height:140px;justify-content:flex-end}
+  .trend-bar{width:100%;border-radius:8px 8px 0 0;background:linear-gradient(180deg,var(--blue),var(--teal));min-height:4px}
+  .trend-bar.last{background:linear-gradient(180deg,var(--yellow),var(--yellow-deep))}
+  .trend-val{font-size:14px;font-weight:700;color:var(--navy)}
+  .trend-label{font-size:12px;color:var(--navy-muted);font-weight:600;text-transform:uppercase}
+  .trend-conv{font-size:11px;color:var(--navy-muted)}
+  /* 6-month trend */
+  .m6-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;align-items:end;padding:24px 0 8px}
+  .m6-col{display:flex;flex-direction:column;align-items:center;gap:8px}
+  .m6-bar-wrap{width:100%;height:120px;display:flex;align-items:flex-end}
+  .m6-bar{width:100%;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--blue),var(--teal));min-height:4px}
+  .m6-bar.current{background:linear-gradient(180deg,var(--yellow),var(--yellow-deep))}
+  .m6-val{font-size:13px;font-weight:700;color:var(--navy)}
+  .m6-label{font-size:11px;color:var(--navy-muted);font-weight:600}
+  /* Table */
+  .table-wrap{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px 28px;box-shadow:var(--shadow-soft)}
+  table.editorial{width:100%;border-collapse:collapse;font-size:14px}
+  table.editorial thead th{text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--navy-muted);padding:12px 14px}
+  table.editorial tbody td{padding:14px 14px;color:var(--navy)}
+  table.editorial tbody tr:nth-child(even) td{background:var(--surface-low)}
+  table.editorial tbody tr:hover td{background:var(--surface-high)}
+  table.editorial tbody tr td:first-child{border-radius:12px 0 0 12px}
+  table.editorial tbody tr td:last-child{border-radius:0 12px 12px 0}
+  table.editorial td.num{font-variant-numeric:tabular-nums;font-weight:500}
+  .delta-up{color:var(--green);font-weight:500;font-size:13px}.delta-down{color:var(--red);font-weight:500;font-size:13px}
+  /* Bars */
+  .bars{display:flex;flex-direction:column;gap:10px}
+  .bar-row{display:grid;grid-template-columns:180px 1fr 70px;align-items:center;gap:14px;padding:6px 0}
+  .bar-label{font-size:13.5px;color:var(--navy);font-weight:500}
+  .bar-track{height:10px;background:var(--surface-variant);border-radius:var(--radius-pill);overflow:hidden}
+  .bar-fill{height:100%;border-radius:var(--radius-pill);background:linear-gradient(90deg,var(--blue),var(--teal))}
+  .bar-fill.warm{background:linear-gradient(90deg,var(--yellow-deep),var(--yellow))}
+  .bar-fill.red{background:linear-gradient(90deg,var(--red),#D4606D)}
+  .bar-value{font-size:13.5px;font-weight:600;color:var(--navy);text-align:right;font-variant-numeric:tabular-nums}
+  /* Donut funnel */
+  .donut-row{display:grid;grid-template-columns:200px 1fr;gap:28px;align-items:center}
+  .donut{width:200px;height:200px;border-radius:50%;background:conic-gradient(var(--green) 0 38.6%,var(--yellow) 38.6% 61.4%,var(--red) 61.4% 100%);display:grid;place-items:center;box-shadow:var(--shadow-soft);position:relative}
+  .donut::before{content:'';position:absolute;inset:22px;background:var(--surface-lowest);border-radius:50%}
+  .donut-center{position:relative;text-align:center}
+  .donut-center .num{font-size:1.8rem;font-weight:700;letter-spacing:-.03em;line-height:1}
+  .donut-center .lbl{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--navy-muted);margin-top:4px;font-weight:600}
+  .legend{display:flex;flex-direction:column;gap:14px}
+  .legend-item{display:flex;align-items:center;gap:12px}
+  .legend-dot{width:14px;height:14px;border-radius:4px;flex-shrink:0}
+  .legend-dot.green{background:var(--green)}.legend-dot.yellow{background:var(--yellow)}.legend-dot.red{background:var(--red)}
+  .legend-text{flex:1}.legend-name{font-weight:600;font-size:14px}.legend-val{color:var(--navy-muted);font-size:13px}
+  .legend-pct{font-weight:700;font-size:18px;letter-spacing:-.02em}
+  /* Insight */
+  .insight{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px 28px;box-shadow:var(--shadow-soft);position:relative}
+  .insight::before{content:'';position:absolute;left:0;top:28px;bottom:28px;width:4px;border-radius:var(--radius-pill);background:var(--yellow)}
+  .insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .insight h4{font-size:15px;font-weight:600;color:var(--navy);letter-spacing:-.01em;margin-bottom:8px}
+  .insight p{font-size:14px;line-height:1.6;color:var(--navy-soft)}
+  .insight .reco{display:inline-block;margin-top:10px;padding:6px 12px;background:var(--yellow);color:var(--navy);font-weight:600;font-size:12px;border-radius:var(--radius-pill);text-transform:uppercase;letter-spacing:.05em}
+  footer{margin-top:60px;text-align:center;color:var(--navy-faint);font-size:12px;text-transform:uppercase;letter-spacing:.1em}
+  @media(max-width:980px){.hero,.grid-2,.grid-3,.grid-4,.donut-row,.insight-grid,.m6-grid{grid-template-columns:1fr}.trend-grid{grid-template-columns:repeat(2,1fr)}.kpi-strip{grid-template-columns:1fr 1fr}.hero h1{font-size:2.25rem}.page{padding:20px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-coin">R</div>
+      <div><div class="brand-name">Relif <span class="brand-sub">· AI Lead Management</span></div></div>
+    </div>
+    <div class="nav-group">
+      <div class="period-nav">
+        <a href="producto.html" class="period-btn">Diario</a>
+        <a href="semanal_producto.html" class="period-btn">Semanal</a>
+        <a href="mensual_producto.html" class="period-btn active">Mensual</a>
+      </div>
+      <div class="role-nav">
+        <a href="mensual_producto.html" class="role-btn active">Producto</a>
+        <a href="mensual_captacion.html" class="role-btn">Captación</a>
+        <a href="mensual_comercial.html" class="role-btn">Comercial</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-card">
+      <div class="badges">
+        <span class="badge badge-yellow">Abril 2026</span>
+        <span class="badge badge-blue">01 – 30 Abr 2026</span>
+        <span class="badge badge-green">BCI · Captación Digital</span>
+      </div>
+      <h1>Reporte Mensual<br>Abril · 2026</h1>
+      <div class="hero-subtitle">Jefe de Producto · Cierre de mes completo</div>
+      <div class="hero-meta">Generado 04 May 2026, 06:15 · Vista: Producto</div>
+    </div>
+    <div class="kpi-strip">
+      <div class="kpi"><div class="kpi-label">Leads del mes</div><div class="kpi-value">16.840</div><div class="kpi-delta">↑ 4.6% vs Marzo</div></div>
+      <div class="kpi"><div class="kpi-label">Derivados</div><div class="kpi-value">5.640</div><div class="kpi-delta">33.5% conversión</div></div>
+      <div class="kpi"><div class="kpi-label">Simulaciones</div><div class="kpi-value">10.820</div><div class="kpi-sub">64.3% de los leads</div></div>
+      <div class="kpi"><div class="kpi-label">Pre-aprobados</div><div class="kpi-value">4.180</div><div class="kpi-sub">38.6% sobre simulaciones</div></div>
+    </div>
+  </div>
+
+  <!-- KPIs del mes -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Producto · Abril 2026</div>
+        <div class="section-title">Indicadores clave del mes</div>
+      </div>
+      <div class="section-sub">Comparado con Marzo 2026</div>
+    </div>
+    <div class="grid grid-4">
+      <div class="stat-card">
+        <div class="stat-eyebrow">Monto total simulado</div>
+        <div class="stat-num">$397B</div>
+        <div class="stat-foot" style="color:var(--green)">↑ 6.2% vs Marzo</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-eyebrow">Tasa pre-aprobación</div>
+        <div class="stat-num">38.6%</div>
+        <div class="stat-foot" style="color:var(--green)">↑ 1.8pp vs Marzo (36.8%)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-eyebrow">Tasa de rechazo</div>
+        <div class="stat-num">37.9%</div>
+        <div class="stat-foot" style="color:var(--green)">↓ 0.9pp — mejora sostenida</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-eyebrow">Drop del funnel</div>
+        <div class="stat-num">23.5%</div>
+        <div class="stat-foot" style="color:var(--red)">↑ 0.7pp — punto a trabajar</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tendencia semanal dentro del mes -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Evolución semanal</div>
+        <div class="section-title">Leads por semana — Abril 2026</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="trend-grid">
+        <div class="trend-week">
+          <div class="trend-bar-wrap">
+            <div class="trend-val">3.720</div>
+            <div class="trend-bar" style="height:74px"></div>
+          </div>
+          <div class="trend-label">Sem 14</div>
+          <div class="trend-conv">31 Mar–06 Abr · 32.1% conv.</div>
+        </div>
+        <div class="trend-week">
+          <div class="trend-bar-wrap">
+            <div class="trend-val">3.980</div>
+            <div class="trend-bar" style="height:80px"></div>
+          </div>
+          <div class="trend-label">Sem 15</div>
+          <div class="trend-conv">07–13 Abr · 33.0% conv.</div>
+        </div>
+        <div class="trend-week">
+          <div class="trend-bar-wrap">
+            <div class="trend-val">4.280</div>
+            <div class="trend-bar" style="height:86px"></div>
+          </div>
+          <div class="trend-label">Sem 16</div>
+          <div class="trend-conv">14–20 Abr · 34.2% conv.</div>
+        </div>
+        <div class="trend-week">
+          <div class="trend-bar-wrap">
+            <div class="trend-val">4.860</div>
+            <div class="trend-bar last" style="height:100px"></div>
+          </div>
+          <div class="trend-label">Sem 17</div>
+          <div class="trend-conv">21–27 Abr · 34.8% conv.</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--navy-muted);text-align:center;padding-top:8px">Tendencia alcista durante todo el mes — la semana 17 fue la de mayor volumen del trimestre</p>
+    </div>
+  </div>
+
+  <!-- Tendencia 6 meses -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Tendencia histórica</div>
+        <div class="section-title">Evolución de leads — 6 meses</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="m6-grid">
+        <div class="m6-col">
+          <div class="m6-bar-wrap"><div class="m6-bar" style="height:59px"></div></div>
+          <div class="m6-val">12.400</div>
+          <div class="m6-label">Nov 25</div>
+        </div>
+        <div class="m6-col">
+          <div class="m6-bar-wrap"><div class="m6-bar" style="height:51px"></div></div>
+          <div class="m6-val">10.800</div>
+          <div class="m6-label">Dic 25</div>
+        </div>
+        <div class="m6-col">
+          <div class="m6-bar-wrap"><div class="m6-bar" style="height:68px"></div></div>
+          <div class="m6-val">14.200</div>
+          <div class="m6-label">Ene 26</div>
+        </div>
+        <div class="m6-col">
+          <div class="m6-bar-wrap"><div class="m6-bar" style="height:74px"></div></div>
+          <div class="m6-val">15.600</div>
+          <div class="m6-label">Feb 26</div>
+        </div>
+        <div class="m6-col">
+          <div class="m6-bar-wrap"><div class="m6-bar" style="height:77px"></div></div>
+          <div class="m6-val">16.100</div>
+          <div class="m6-label">Mar 26</div>
+        </div>
+        <div class="m6-col">
+          <div class="m6-bar-wrap"><div class="m6-bar current" style="height:82px"></div></div>
+          <div class="m6-val" style="color:var(--navy);font-weight:700">16.840</div>
+          <div class="m6-label" style="color:var(--navy)">Abr 26 ↑</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--navy-muted);text-align:center;padding-top:12px">Crecimiento mes a mes sostenido desde enero 2026 — Dic 2025 fue el valle estacional por fiestas</p>
+    </div>
+  </div>
+
+  <!-- Productos -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Mix de producto</div>
+        <div class="section-title">Rendimiento mensual por línea</div>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="editorial">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th class="num">Leads</th>
+            <th class="num">% Mix</th>
+            <th class="num">Simulaciones</th>
+            <th class="num">Pre-aprob.</th>
+            <th class="num">Tasa pre-aprob.</th>
+            <th class="num">vs Marzo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Crédito de Consumo</strong></td>
+            <td class="num">9.767</td>
+            <td class="num">58.0%</td>
+            <td class="num">6.282</td>
+            <td class="num">2.583</td>
+            <td class="num">41.1%</td>
+            <td class="num"><span class="delta-up">↑ 5.1%</span></td>
+          </tr>
+          <tr>
+            <td><strong>Refinanciamiento</strong></td>
+            <td class="num">3.704</td>
+            <td class="num">22.0%</td>
+            <td class="num">2.254</td>
+            <td class="num">832</td>
+            <td class="num">36.9%</td>
+            <td class="num"><span class="delta-up">↑ 3.8%</span></td>
+          </tr>
+          <tr>
+            <td><strong>Automotriz</strong></td>
+            <td class="num">1.852</td>
+            <td class="num">11.0%</td>
+            <td class="num">1.148</td>
+            <td class="num">389</td>
+            <td class="num">33.9%</td>
+            <td class="num"><span class="delta-down">↓ 1.2%</span></td>
+          </tr>
+          <tr>
+            <td><strong>Hipotecario</strong></td>
+            <td class="num">1.010</td>
+            <td class="num">6.0%</td>
+            <td class="num">742</td>
+            <td class="num">268</td>
+            <td class="num">36.1%</td>
+            <td class="num"><span class="delta-up">↑ 8.4%</span></td>
+          </tr>
+          <tr>
+            <td><strong>Otros</strong></td>
+            <td class="num">507</td>
+            <td class="num">3.0%</td>
+            <td class="num">394</td>
+            <td class="num">108</td>
+            <td class="num">27.4%</td>
+            <td class="num"><span class="delta-down">↓ 2.0%</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Funnel mensual -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Funnel crediticio</div>
+        <div class="section-title">Pre-aprobación mensual</div>
+      </div>
+    </div>
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="donut-row">
+          <div class="donut">
+            <div class="donut-center">
+              <div class="num">38.6%</div>
+              <div class="lbl">pre-apr.</div>
+            </div>
+          </div>
+          <div class="legend">
+            <div class="legend-item">
+              <div class="legend-dot green"></div>
+              <div class="legend-text">
+                <div class="legend-name">Pre-aprobados</div>
+                <div class="legend-val">4.180 leads</div>
+              </div>
+              <div class="legend-pct" style="color:var(--green)">38.6%</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot yellow"></div>
+              <div class="legend-text">
+                <div class="legend-name">Drop del funnel</div>
+                <div class="legend-val">2.546 leads</div>
+              </div>
+              <div class="legend-pct" style="color:var(--yellow-deep)">23.5%</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot red"></div>
+              <div class="legend-text">
+                <div class="legend-name">Rechazados</div>
+                <div class="legend-val">4.094 leads</div>
+              </div>
+              <div class="legend-pct" style="color:var(--red)">37.9%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Evolución tasa pre-aprobación — 6 meses</h3>
+        <div class="bars" style="margin-top:8px">
+          <div class="bar-row">
+            <div class="bar-label">Nov 2025</div>
+            <div class="bar-track"><div class="bar-fill" style="width:69%"></div></div>
+            <div class="bar-value">34.5%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Dic 2025</div>
+            <div class="bar-track"><div class="bar-fill" style="width:67%"></div></div>
+            <div class="bar-value">33.5%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Ene 2026</div>
+            <div class="bar-track"><div class="bar-fill" style="width:71%"></div></div>
+            <div class="bar-value">35.5%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Feb 2026</div>
+            <div class="bar-track"><div class="bar-fill" style="width:73%"></div></div>
+            <div class="bar-value">36.5%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Mar 2026</div>
+            <div class="bar-track"><div class="bar-fill" style="width:74%"></div></div>
+            <div class="bar-value">36.8%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Abr 2026</div>
+            <div class="bar-track"><div class="bar-fill warm" style="width:77%"></div></div>
+            <div class="bar-value">38.6%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Razones rechazo -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Calidad de leads</div>
+        <div class="section-title">Principales razones de rechazo</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="bars">
+        <div class="bar-row">
+          <div class="bar-label">Renta insuficiente</div>
+          <div class="bar-track"><div class="bar-fill red" style="width:48%"></div></div>
+          <div class="bar-value">41.7%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Historial crediticio</div>
+          <div class="bar-track"><div class="bar-fill red" style="width:34%"></div></div>
+          <div class="bar-value">29.3%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Edad fuera de rango</div>
+          <div class="bar-track"><div class="bar-fill red" style="width:18%"></div></div>
+          <div class="bar-value">15.8%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Documentación incompleta</div>
+          <div class="bar-track"><div class="bar-fill red" style="width:10%"></div></div>
+          <div class="bar-value">8.4%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Otros</div>
+          <div class="bar-track"><div class="bar-fill red" style="width:6%"></div></div>
+          <div class="bar-value">4.8%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cross-sell mensual -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Cross-sell</div>
+        <div class="section-title">Venta cruzada — Abril 2026</div>
+      </div>
+    </div>
+    <div class="grid grid-3">
+      <div class="stat-card">
+        <div class="stat-eyebrow">Attach rate mensual</div>
+        <div class="stat-num">18.4%</div>
+        <div class="stat-foot" style="color:var(--red)">Meta: 25% · Brecha: 6.6pp</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-eyebrow">Créditos con XS</div>
+        <div class="stat-num">207</div>
+        <div class="stat-foot">de 1.124 cursados en el mes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-eyebrow">Combo más frecuente</div>
+        <div class="stat-num" style="font-size:1.4rem">Consumo<br>+ Seguro</div>
+        <div class="stat-foot">121 combinaciones · 58.5% del XS</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Insights estratégicos -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">AI Insights · Estratégicos</div>
+        <div class="section-title">Conclusiones mensuales · Producto</div>
+      </div>
+    </div>
+    <div class="insight">
+      <div class="insight-grid">
+        <div>
+          <h4>Hipotecario: el producto de mayor crecimiento</h4>
+          <p>Creció 8.4% en volumen vs Marzo y mantiene una tasa de pre-aprobación del 36.1%. Aunque representa solo el 6% del mix, el valor del ticket hace que su impacto en monto sea desproporcionado. Oportunidad de crecer sin deteriorar calidad.</p>
+          <span class="reco">Ampliar captación hipotecaria</span>
+        </div>
+        <div>
+          <h4>Drop del 23.5%: el cuello de botella principal</h4>
+          <p>De cada 10 leads que simulan, 2.35 abandonan antes de completar el proceso. El mayor drop ocurre en el paso de carga de documentos. Simplificar ese paso podría recuperar ~600 pre-aprobados adicionales al mes.</p>
+          <span class="reco">Simplificar flujo de documentos</span>
+        </div>
+        <div>
+          <h4>Tasa pre-aprobación 38.6%: mejor histórico en 6 meses</h4>
+          <p>La mejora sostenida desde enero (+4.1pp en 4 meses) refleja que el modelo de scoring de la AI está mejorando la calidad de derivación. El siguiente hito es superar el 40% — alcanzable con ajustes en el filtro de renta mínima.</p>
+          <span class="reco">Revisar umbral renta mínima</span>
+        </div>
+        <div>
+          <h4>Cross-sell estancado en 18.4% — acción requerida</h4>
+          <p>La brecha con la meta del 25% no se redujo en el mes. La AI puede identificar en el chat qué perfiles tienen mayor propensión a aceptar un seguro. La ventana óptima es proponer el cross-sell justo al confirmar el monto aprobado.</p>
+          <span class="reco">Activar XS en confirmación AI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>Relif AI · Reporte Mensual · Producto · Abril 2026 · Generado automáticamente</footer>
+</div>
+</body>
+</html>

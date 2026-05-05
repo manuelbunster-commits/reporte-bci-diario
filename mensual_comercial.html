@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Reporte Mensual · Comercial · BCI · Abril 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--green:#1B6E48;--green-deep:#104030;--green-muted:#4A9470;--green-faint:#85BEA0;--green-soft:#D4EDE1;--yellow:#F9D00A;--yellow-deep:#705D00;--yellow-soft:#FDD414;--surface:#F4FAF7;--surface-low:#E8F4EE;--surface-lowest:#FFFFFF;--surface-variant:#D8EDE3;--surface-high:#CCE8D8;--navy:#15183A;--navy-muted:#5A5D7E;--navy-faint:#9598B0;--teal:#25616F;--teal-soft:#DBEEF1;--blue:#2C5889;--blue-soft:#DDE7F4;--red:#B43A4A;--red-soft:#F6DEE2;--shadow-soft:0 12px 32px rgba(27,110,72,.07);--shadow-medium:0 18px 48px rgba(27,110,72,.10);--radius-xl:1.5rem;--radius-lg:1.125rem;--radius-md:.75rem;--radius-pill:999px}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--surface);color:var(--navy);font-family:'Jost',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;letter-spacing:-.005em}
+  a{color:var(--green);text-decoration:none;transition:opacity .15s}a:hover{opacity:.7}
+  .page{max-width:1320px;margin:0 auto;padding:32px 40px 80px}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(255,255,255,.65);backdrop-filter:blur(16px);border-radius:var(--radius-pill);box-shadow:var(--shadow-soft);margin-bottom:24px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand-coin{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#FDD414,#F9D00A);display:grid;place-items:center;font-weight:700;color:var(--navy);font-size:15px;box-shadow:inset 0 -2px 0 rgba(112,93,0,.18),0 4px 12px rgba(249,208,10,.35)}
+  .brand-name{font-weight:600;letter-spacing:-.02em;font-size:17px}
+  .brand-sub{color:var(--navy-muted);font-size:13px;margin-left:4px}
+  .nav-group{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+  .period-nav{display:flex;gap:6px;background:var(--surface-variant);padding:5px;border-radius:var(--radius-pill)}
+  .period-btn{padding:6px 16px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;text-decoration:none;color:var(--green-deep);transition:all .15s}
+  .period-btn.active{background:var(--green);color:#fff}
+  .role-nav{display:flex;gap:6px;background:rgba(255,255,255,.7);backdrop-filter:blur(16px);padding:5px;border-radius:var(--radius-pill);box-shadow:var(--shadow-soft)}
+  .role-btn{padding:6px 16px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;text-decoration:none;color:var(--navy-muted);transition:all .15s}
+  .role-btn.active{background:var(--green);color:#fff}
+  .role-btn:hover:not(.active){background:var(--surface-variant);opacity:1;color:var(--green-deep)}
+  .hero{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;margin-bottom:32px}
+  .hero-card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:36px 40px;box-shadow:var(--shadow-soft);position:relative;overflow:hidden}
+  .hero-card::after{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(27,110,72,.12),transparent 70%);pointer-events:none}
+  .badges{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+  .badge{padding:6px 14px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+  .badge-yellow{background:var(--yellow);color:var(--navy)}.badge-green{background:var(--green-soft);color:var(--green-deep)}.badge-blue{background:var(--blue-soft);color:var(--blue)}
+  .hero h1{font-size:3rem;font-weight:700;letter-spacing:-.035em;line-height:1.05;margin-bottom:12px}
+  .hero-subtitle{color:var(--navy-muted);font-size:17px;margin-bottom:8px}
+  .hero-meta{color:var(--navy-faint);font-size:13px;text-transform:uppercase;letter-spacing:.05em;font-weight:500}
+  .kpi-strip{background:var(--green);color:#FFF;border-radius:var(--radius-xl);padding:32px;box-shadow:var(--shadow-medium);display:grid;grid-template-columns:repeat(2,1fr);gap:24px;position:relative;overflow:hidden}
+  .kpi-strip::before{content:'';position:absolute;bottom:-30px;left:-30px;width:120px;height:120px;border-radius:50%;background:var(--yellow);opacity:.15}
+  .kpi{position:relative}
+  .kpi-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;color:rgba(255,255,255,.55);margin-bottom:8px}
+  .kpi-value{font-size:2.25rem;font-weight:700;letter-spacing:-.03em;line-height:1}
+  .kpi-delta{margin-top:6px;font-size:13px;font-weight:500;color:var(--yellow)}
+  .kpi-sub{color:rgba(255,255,255,.6);font-size:13px;margin-top:4px}
+  .section{margin-bottom:40px}
+  .section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;padding:0 4px}
+  .section-title{font-size:1.5rem;font-weight:700;letter-spacing:-.025em}
+  .section-eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:600;color:var(--green);margin-bottom:6px}
+  .section-sub{color:var(--navy-muted);font-size:14px}
+  .card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:28px 32px;box-shadow:var(--shadow-soft)}
+  .card h3{font-size:1.0625rem;font-weight:600;letter-spacing:-.015em;margin-bottom:14px}
+  .grid{display:grid;gap:24px}.grid-2{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(3,1fr)}.grid-4{grid-template-columns:repeat(4,1fr)}
+  .stat-card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px 26px;box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:8px}
+  .stat-eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--green-muted)}
+  .stat-num{font-size:2.5rem;font-weight:700;letter-spacing:-.035em;line-height:1}
+  .stat-foot{font-size:13px;color:var(--navy-muted)}
+  /* Exec card */
+  .exec-card{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:26px 28px;box-shadow:var(--shadow-soft);border-top:4px solid transparent}
+  .exec-card.top{border-top-color:var(--green)}
+  .exec-card.ok{border-top-color:var(--yellow)}
+  .exec-card.alert{border-top-color:var(--red)}
+  .exec-avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:18px;color:#fff;margin-bottom:14px}
+  .exec-avatar.green{background:linear-gradient(135deg,var(--green),var(--green-deep))}
+  .exec-avatar.yellow{background:linear-gradient(135deg,#B8910A,var(--yellow-deep))}
+  .exec-avatar.red{background:linear-gradient(135deg,var(--red),#8B2535)}
+  .exec-name{font-size:1.0625rem;font-weight:700;margin-bottom:4px}
+  .exec-role{font-size:12px;color:var(--navy-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px}
+  .exec-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+  .exec-kpi-label{font-size:11px;color:var(--navy-muted);margin-bottom:3px}
+  .exec-kpi-val{font-size:1.375rem;font-weight:700;letter-spacing:-.02em}
+  .exec-tag{display:inline-block;padding:5px 12px;border-radius:var(--radius-pill);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+  .exec-tag.top{background:var(--green-soft);color:var(--green-deep)}
+  .exec-tag.ok{background:#FFF3CD;color:#7A5C00}
+  .exec-tag.alert{background:var(--red-soft);color:var(--red)}
+  /* Weekly trend */
+  .trend-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:end;padding:24px 0 8px}
+  .trend-week{display:flex;flex-direction:column;align-items:center;gap:8px}
+  .trend-bar-wrap{width:100%;display:flex;flex-direction:column;align-items:center;gap:4px;height:140px;justify-content:flex-end}
+  .trend-bar{width:100%;border-radius:8px 8px 0 0;background:linear-gradient(180deg,var(--green),var(--green-deep));min-height:4px}
+  .trend-bar.last{background:linear-gradient(180deg,var(--yellow-soft),var(--yellow-deep))}
+  .trend-val{font-size:14px;font-weight:700;color:var(--navy)}
+  .trend-label{font-size:12px;color:var(--navy-muted);font-weight:600;text-transform:uppercase}
+  .trend-conv{font-size:11px;color:var(--navy-muted)}
+  /* 6-month */
+  .m6-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;align-items:end;padding:24px 0 8px}
+  .m6-col{display:flex;flex-direction:column;align-items:center;gap:8px}
+  .m6-bar-wrap{width:100%;height:120px;display:flex;align-items:flex-end}
+  .m6-bar{width:100%;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--green),var(--green-deep));min-height:4px}
+  .m6-bar.current{background:linear-gradient(180deg,var(--yellow-soft),var(--yellow-deep))}
+  .m6-val{font-size:13px;font-weight:700;color:var(--navy)}
+  .m6-label{font-size:11px;color:var(--navy-muted);font-weight:600}
+  /* Table */
+  .table-wrap{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px 28px;box-shadow:var(--shadow-soft)}
+  table.editorial{width:100%;border-collapse:collapse;font-size:14px}
+  table.editorial thead th{text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--navy-muted);padding:12px 14px}
+  table.editorial tbody td{padding:14px 14px;color:var(--navy)}
+  table.editorial tbody tr:nth-child(even) td{background:var(--surface-low)}
+  table.editorial tbody tr:hover td{background:var(--surface-high)}
+  table.editorial tbody tr td:first-child{border-radius:12px 0 0 12px}
+  table.editorial tbody tr td:last-child{border-radius:0 12px 12px 0}
+  table.editorial td.num{font-variant-numeric:tabular-nums;font-weight:500}
+  .delta-up{color:var(--green);font-weight:500;font-size:13px}.delta-down{color:var(--red);font-weight:500;font-size:13px}
+  /* Bars */
+  .bars{display:flex;flex-direction:column;gap:10px}
+  .bar-row{display:grid;grid-template-columns:180px 1fr 80px;align-items:center;gap:14px;padding:6px 0}
+  .bar-label{font-size:13.5px;color:var(--navy);font-weight:500}
+  .bar-track{height:10px;background:var(--surface-variant);border-radius:var(--radius-pill);overflow:hidden}
+  .bar-fill{height:100%;border-radius:var(--radius-pill);background:linear-gradient(90deg,var(--green),var(--green-muted))}
+  .bar-fill.yellow{background:linear-gradient(90deg,var(--yellow-deep),var(--yellow))}
+  .bar-fill.red{background:linear-gradient(90deg,var(--red),#D4606D)}
+  .bar-value{font-size:13.5px;font-weight:600;color:var(--navy);text-align:right;font-variant-numeric:tabular-nums}
+  /* Doc pipeline */
+  .pipe-row{display:flex;align-items:center;gap:0;margin-bottom:24px}
+  .pipe-step{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative}
+  .pipe-step:not(:last-child)::after{content:'';position:absolute;top:20px;right:-1px;width:50%;height:2px;background:var(--surface-variant);z-index:0}
+  .pipe-step:not(:first-child)::before{content:'';position:absolute;top:20px;left:-1px;width:50%;height:2px;background:var(--surface-variant);z-index:0}
+  .pipe-circle{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px;z-index:1;position:relative}
+  .pipe-circle.green{background:var(--green);color:#fff}
+  .pipe-circle.yellow{background:var(--yellow);color:var(--navy)}
+  .pipe-circle.red{background:var(--red-soft);color:var(--red)}
+  .pipe-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--navy-muted);text-align:center}
+  .pipe-num{font-size:1.25rem;font-weight:700;letter-spacing:-.02em;text-align:center}
+  /* Insight */
+  .insight{background:var(--surface-lowest);border-radius:var(--radius-xl);padding:24px 28px;box-shadow:var(--shadow-soft);position:relative}
+  .insight::before{content:'';position:absolute;left:0;top:28px;bottom:28px;width:4px;border-radius:var(--radius-pill);background:var(--green)}
+  .insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .insight h4{font-size:15px;font-weight:600;color:var(--navy);letter-spacing:-.01em;margin-bottom:8px}
+  .insight p{font-size:14px;line-height:1.6;color:var(--navy-muted)}
+  .insight .reco{display:inline-block;margin-top:10px;padding:6px 12px;background:var(--green-soft);color:var(--green-deep);font-weight:600;font-size:12px;border-radius:var(--radius-pill);text-transform:uppercase;letter-spacing:.05em}
+  footer{margin-top:60px;text-align:center;color:var(--navy-faint);font-size:12px;text-transform:uppercase;letter-spacing:.1em}
+  @media(max-width:980px){.hero,.grid-2,.grid-3,.grid-4,.insight-grid,.m6-grid{grid-template-columns:1fr}.trend-grid{grid-template-columns:repeat(2,1fr)}.kpi-strip{grid-template-columns:1fr 1fr}.hero h1{font-size:2.25rem}.page{padding:20px}.pipe-row{flex-direction:column;gap:16px}.pipe-step::after,.pipe-step::before{display:none}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-coin">R</div>
+      <div><div class="brand-name">Relif <span class="brand-sub">· AI Lead Management</span></div></div>
+    </div>
+    <div class="nav-group">
+      <div class="period-nav">
+        <a href="comercial.html" class="period-btn">Diario</a>
+        <a href="semanal_comercial.html" class="period-btn">Semanal</a>
+        <a href="mensual_comercial.html" class="period-btn active">Mensual</a>
+      </div>
+      <div class="role-nav">
+        <a href="mensual_producto.html" class="role-btn">Producto</a>
+        <a href="mensual_captacion.html" class="role-btn">Captación</a>
+        <a href="mensual_comercial.html" class="role-btn active">Comercial</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-card">
+      <div class="badges">
+        <span class="badge badge-yellow">Abril 2026</span>
+        <span class="badge badge-green">01 – 30 Abr 2026</span>
+        <span class="badge badge-blue">BCI · Captación Digital</span>
+      </div>
+      <h1>Reporte Mensual<br>Abril · 2026</h1>
+      <div class="hero-subtitle">Líder Comercial · Cierre de mes y ranking</div>
+      <div class="hero-meta">Generado 04 May 2026, 06:15 · Vista: Comercial</div>
+    </div>
+    <div class="kpi-strip">
+      <div class="kpi"><div class="kpi-label">Cursados del mes</div><div class="kpi-value">1.124</div><div class="kpi-delta">↑ 8.1% vs Marzo</div></div>
+      <div class="kpi"><div class="kpi-label">Monto cursado</div><div class="kpi-value">$16.2B</div><div class="kpi-delta">↑ 11.4% vs Marzo</div></div>
+      <div class="kpi"><div class="kpi-label">Ticket promedio</div><div class="kpi-value">$14.4M</div><div class="kpi-sub">↑ $1.1M vs Marzo</div></div>
+      <div class="kpi"><div class="kpi-label">Conv. cartera</div><div class="kpi-value">19.9%</div><div class="kpi-sub">Derivados → cursados</div></div>
+    </div>
+  </div>
+
+  <!-- KPIs del mes -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Comercial · Abril 2026</div>
+        <div class="section-title">Métricas de cierre mensual</div>
+      </div>
+      <div class="section-sub">Comparado con Marzo 2026</div>
+    </div>
+    <div class="grid grid-4">
+      <div class="stat-card">
+        <div class="stat-eyebrow">Derivados recibidos</div>
+        <div class="stat-num">5.640</div>
+        <div class="stat-foot">Calificados por AI en el mes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-eyebrow">Contactados</div>
+        <div class="stat-num">4.441</div>
+        <div class="stat-foot">78.7% de derivados · <span style="color:var(--red)">1.199 sin contacto</span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-eyebrow">Propuestas enviadas</div>
+        <div class="stat-num">2.016</div>
+        <div class="stat-foot">45.4% de contactados</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-eyebrow">Cursados</div>
+        <div class="stat-num" style="color:var(--green)">1.124</div>
+        <div class="stat-foot">55.8% de propuestas → cierre</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tendencia semanal cursados -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Evolución semanal</div>
+        <div class="section-title">Créditos cursados por semana — Abril 2026</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="trend-grid">
+        <div class="trend-week">
+          <div class="trend-bar-wrap">
+            <div class="trend-val">234</div>
+            <div class="trend-bar" style="height:67px"></div>
+          </div>
+          <div class="trend-label">Sem 14</div>
+          <div class="trend-conv">31 Mar–06 Abr · $13.8M ticket</div>
+        </div>
+        <div class="trend-week">
+          <div class="trend-bar-wrap">
+            <div class="trend-val">258</div>
+            <div class="trend-bar" style="height:74px"></div>
+          </div>
+          <div class="trend-label">Sem 15</div>
+          <div class="trend-conv">07–13 Abr · $14.1M ticket</div>
+        </div>
+        <div class="trend-week">
+          <div class="trend-bar-wrap">
+            <div class="trend-val">291</div>
+            <div class="trend-bar" style="height:84px"></div>
+          </div>
+          <div class="trend-label">Sem 16</div>
+          <div class="trend-conv">14–20 Abr · $14.8M ticket</div>
+        </div>
+        <div class="trend-week">
+          <div class="trend-bar-wrap">
+            <div class="trend-val">341</div>
+            <div class="trend-bar last" style="height:100px"></div>
+          </div>
+          <div class="trend-label">Sem 17</div>
+          <div class="trend-conv">21–27 Abr · $15.1M ticket</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--navy-muted);text-align:center;padding-top:8px">La semana 17 fue la mejor del mes — Felipe y Macarena con récord de propuestas enviadas</p>
+    </div>
+  </div>
+
+  <!-- Ranking ejecutivos mes -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Ranking mensual</div>
+        <div class="section-title">Rendimiento por ejecutivo — Abril 2026</div>
+      </div>
+    </div>
+    <div class="grid grid-3">
+      <div class="exec-card top">
+        <div class="exec-avatar green">F</div>
+        <div class="exec-name">Felipe Araya</div>
+        <div class="exec-role">Ejecutivo Senior</div>
+        <div class="exec-kpis">
+          <div>
+            <div class="exec-kpi-label">Cursados</div>
+            <div class="exec-kpi-val" style="color:var(--green)">448</div>
+          </div>
+          <div>
+            <div class="exec-kpi-label">Monto</div>
+            <div class="exec-kpi-val" style="color:var(--green)">$6.8B</div>
+          </div>
+          <div>
+            <div class="exec-kpi-label">Conv.</div>
+            <div class="exec-kpi-val" style="color:var(--green)">23.8%</div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--navy-muted);margin-bottom:14px">Mes récord de volumen. Ticket promedio $15.2M. Cross-sell del 23.4% — lidera el attach rate del equipo. Tiempo de primer contacto promedio: 1.9h.</p>
+        <span class="exec-tag top">Top performer</span>
+      </div>
+      <div class="exec-card ok">
+        <div class="exec-avatar yellow">M</div>
+        <div class="exec-name">Macarena Vidal</div>
+        <div class="exec-role">Ejecutiva</div>
+        <div class="exec-kpis">
+          <div>
+            <div class="exec-kpi-label">Cursados</div>
+            <div class="exec-kpi-val" style="color:#7A5C00">392</div>
+          </div>
+          <div>
+            <div class="exec-kpi-label">Monto</div>
+            <div class="exec-kpi-val" style="color:#7A5C00">$5.6B</div>
+          </div>
+          <div>
+            <div class="exec-kpi-label">Conv.</div>
+            <div class="exec-kpi-val" style="color:#7A5C00">20.8%</div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--navy-muted);margin-bottom:14px">Rendimiento estable y en objetivo. Mejoró 1.3pp de conversión vs Marzo. Cross-sell del 18.1%. Tiempo de contacto promedio: 4.1h — margen de mejora claro.</p>
+        <span class="exec-tag ok">En objetivo</span>
+      </div>
+      <div class="exec-card alert">
+        <div class="exec-avatar red">R</div>
+        <div class="exec-name">Rodrigo Muñoz</div>
+        <div class="exec-role">Ejecutivo</div>
+        <div class="exec-kpis">
+          <div>
+            <div class="exec-kpi-label">Cursados</div>
+            <div class="exec-kpi-val" style="color:var(--red)">284</div>
+          </div>
+          <div>
+            <div class="exec-kpi-label">Monto</div>
+            <div class="exec-kpi-val" style="color:var(--red)">$3.8B</div>
+          </div>
+          <div>
+            <div class="exec-kpi-label">Conv.</div>
+            <div class="exec-kpi-val" style="color:var(--red)">14.4%</div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--navy-muted);margin-bottom:14px">Bajo objetivo por segundo mes consecutivo. 312 derivados sin contacto en el mes. Tiempo de respuesta promedio 8.4h. Brecha de 9.4pp con Felipe en conversión.</p>
+        <span class="exec-tag alert">Requiere acción urgente</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla ranking mensual completa -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Detalle ejecutivos</div>
+        <div class="section-title">Comparativa mensual</div>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="editorial">
+        <thead>
+          <tr>
+            <th>Ejecutivo</th>
+            <th class="num">Derivados</th>
+            <th class="num">Contactados</th>
+            <th class="num">Cursados</th>
+            <th class="num">Conv.</th>
+            <th class="num">Monto</th>
+            <th class="num">Ticket prom.</th>
+            <th class="num">XS rate</th>
+            <th class="num">t. contacto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Felipe Araya</strong></td>
+            <td class="num">1.882</td>
+            <td class="num">1.711</td>
+            <td class="num">448</td>
+            <td class="num" style="color:var(--green)">23.8%</td>
+            <td class="num">$6.8B</td>
+            <td class="num">$15.2M</td>
+            <td class="num">23.4%</td>
+            <td class="num" style="color:var(--green)">1.9h</td>
+          </tr>
+          <tr>
+            <td><strong>Macarena Vidal</strong></td>
+            <td class="num">1.884</td>
+            <td class="num">1.600</td>
+            <td class="num">392</td>
+            <td class="num" style="color:#7A5C00">20.8%</td>
+            <td class="num">$5.6B</td>
+            <td class="num">$14.3M</td>
+            <td class="num">18.1%</td>
+            <td class="num" style="color:#7A5C00">4.1h</td>
+          </tr>
+          <tr>
+            <td><strong>Rodrigo Muñoz</strong></td>
+            <td class="num">1.874</td>
+            <td class="num">1.130</td>
+            <td class="num">284</td>
+            <td class="num" style="color:var(--red)">14.4%</td>
+            <td class="num">$3.8B</td>
+            <td class="num">$13.4M</td>
+            <td class="num">13.7%</td>
+            <td class="num" style="color:var(--red)">8.4h</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Evolución cursados 6 meses -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Tendencia histórica</div>
+        <div class="section-title">Cursados mensuales — 6 meses</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="m6-grid">
+        <div class="m6-col">
+          <div class="m6-bar-wrap"><div class="m6-bar" style="height:56px"></div></div>
+          <div class="m6-val">840</div>
+          <div class="m6-label">Nov 25</div>
+        </div>
+        <div class="m6-col">
+          <div class="m6-bar-wrap"><div class="m6-bar" style="height:44px"></div></div>
+          <div class="m6-val">660</div>
+          <div class="m6-label">Dic 25</div>
+        </div>
+        <div class="m6-col">
+          <div class="m6-bar-wrap"><div class="m6-bar" style="height:64px"></div></div>
+          <div class="m6-val">960</div>
+          <div class="m6-label">Ene 26</div>
+        </div>
+        <div class="m6-col">
+          <div class="m6-bar-wrap"><div class="m6-bar" style="height:68px"></div></div>
+          <div class="m6-val">1.020</div>
+          <div class="m6-label">Feb 26</div>
+        </div>
+        <div class="m6-col">
+          <div class="m6-bar-wrap"><div class="m6-bar" style="height:70px"></div></div>
+          <div class="m6-val">1.040</div>
+          <div class="m6-label">Mar 26</div>
+        </div>
+        <div class="m6-col">
+          <div class="m6-bar-wrap"><div class="m6-bar current" style="height:80px"></div></div>
+          <div class="m6-val" style="color:var(--green);font-weight:700">1.124</div>
+          <div class="m6-label" style="color:var(--green)">Abr 26 ↑</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--navy-muted);text-align:center;padding-top:12px">Abril 2026 es el mejor mes histórico en cursados — crecimiento del 33.8% vs noviembre 2025</p>
+    </div>
+  </div>
+
+  <!-- Pipeline documentos mensual -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Pipeline documentos</div>
+        <div class="section-title">Estado de carpetas — cierre Abril</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="pipe-row">
+        <div class="pipe-step">
+          <div class="pipe-circle green">1.124</div>
+          <div class="pipe-num">1.124</div>
+          <div class="pipe-label">Cursados</div>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-circle green">804</div>
+          <div class="pipe-num">804</div>
+          <div class="pipe-label">Doc. Completa</div>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-circle yellow">218</div>
+          <div class="pipe-num">218</div>
+          <div class="pipe-label">Doc. Pendiente</div>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-circle red">102</div>
+          <div class="pipe-num">102</div>
+          <div class="pipe-label">Docs Faltantes</div>
+        </div>
+      </div>
+      <div class="bars" style="margin-top:20px">
+        <div class="bar-row">
+          <div class="bar-label">Liquidación de sueldo</div>
+          <div class="bar-track"><div class="bar-fill" style="width:83%"></div></div>
+          <div class="bar-value">933 / 1.124</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Cédula de identidad</div>
+          <div class="bar-track"><div class="bar-fill" style="width:97%"></div></div>
+          <div class="bar-value">1.090 / 1.124</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Contrato de trabajo</div>
+          <div class="bar-track"><div class="bar-fill" style="width:70%"></div></div>
+          <div class="bar-value">787 / 1.124</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Certificado AFP</div>
+          <div class="bar-track"><div class="bar-fill red" style="width:48%"></div></div>
+          <div class="bar-value">540 / 1.124</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cross-sell mensual -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Venta cruzada</div>
+        <div class="section-title">Cross-sell — Abril 2026</div>
+      </div>
+    </div>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>Attach rate mensual vs meta</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px">
+          <div>
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--green-muted);margin-bottom:6px">Abril 2026</div>
+            <div style="font-size:2.25rem;font-weight:700;letter-spacing:-.03em">18.4%</div>
+            <div style="font-size:13px;color:var(--red);margin-top:4px">↓ Meta 25%</div>
+          </div>
+          <div>
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--green-muted);margin-bottom:6px">Marzo 2026</div>
+            <div style="font-size:2.25rem;font-weight:700;letter-spacing:-.03em">17.8%</div>
+            <div style="font-size:13px;color:var(--navy-muted);margin-top:4px">Mes anterior</div>
+          </div>
+          <div>
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--green-muted);margin-bottom:6px">Mejor ejec.</div>
+            <div style="font-size:2.25rem;font-weight:700;letter-spacing:-.03em">23.4%</div>
+            <div style="font-size:13px;color:var(--green);margin-top:4px">Felipe Araya</div>
+          </div>
+        </div>
+        <div class="bars">
+          <div class="bar-row" style="grid-template-columns:200px 1fr 60px">
+            <div class="bar-label" style="font-size:13px">Consumo + Seguro Vida</div>
+            <div class="bar-track"><div class="bar-fill yellow" style="width:57%"></div></div>
+            <div class="bar-value">119</div>
+          </div>
+          <div class="bar-row" style="grid-template-columns:200px 1fr 60px">
+            <div class="bar-label" style="font-size:13px">Automotriz + Seguro Auto</div>
+            <div class="bar-track"><div class="bar-fill yellow" style="width:28%"></div></div>
+            <div class="bar-value">58</div>
+          </div>
+          <div class="bar-row" style="grid-template-columns:200px 1fr 60px">
+            <div class="bar-label" style="font-size:13px">Refi + Tarjeta BCI</div>
+            <div class="bar-track"><div class="bar-fill yellow" style="width:15%"></div></div>
+            <div class="bar-value">30</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Mix de cursados por producto</h3>
+        <div class="bars">
+          <div class="bar-row">
+            <div class="bar-label">Crédito Consumo</div>
+            <div class="bar-track"><div class="bar-fill" style="width:62%"></div></div>
+            <div class="bar-value">697</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Refinanciamiento</div>
+            <div class="bar-track"><div class="bar-fill" style="width:20%"></div></div>
+            <div class="bar-value">225</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Automotriz</div>
+            <div class="bar-track"><div class="bar-fill" style="width:10%"></div></div>
+            <div class="bar-value">112</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Hipotecario</div>
+            <div class="bar-track"><div class="bar-fill" style="width:5%"></div></div>
+            <div class="bar-value">56</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Otros</div>
+            <div class="bar-track"><div class="bar-fill" style="width:3%"></div></div>
+            <div class="bar-value">34</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Insights estratégicos -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">AI Insights · Estratégicos</div>
+        <div class="section-title">Conclusiones mensuales · Comercial</div>
+      </div>
+    </div>
+    <div class="insight">
+      <div class="insight-grid">
+        <div>
+          <h4>Rodrigo: dos meses bajo objetivo — momento de actuar</h4>
+          <p>Con 8.4h de tiempo de primer contacto y 312 derivados sin contactar, la brecha con Felipe (1.9h) es estructural. La solución no es motivacional — es operacional: activar alertas automáticas cuando un lead lleva más de 2h sin respuesta.</p>
+          <span class="reco">Activar alerta de contacto</span>
+        </div>
+        <div>
+          <h4>Certificado AFP: 52% de carpetas incompletas bloquean el desembolso</h4>
+          <p>540 de 1.124 cursados no tienen el certificado AFP al cierre del mes. Esto retrasa el desembolso y afecta la satisfacción del cliente. La AI puede enviar un recordatorio proactivo al cliente antes del cierre de propuesta.</p>
+          <span class="reco">Automatizar recordatorio AFP</span>
+        </div>
+        <div>
+          <h4>Felipe ya demostró que 25% de XS es posible — replicar</h4>
+          <p>El attach rate del equipo es 18.4% pero Felipe llega a 23.4%. El momento en que propone el cross-sell marca la diferencia: lo ofrece siempre al confirmar el monto aprobado, no al inicio. Adoptar este guión en Macarena y Rodrigo puede cerrar la brecha.</p>
+          <span class="reco">Estandarizar guión de XS</span>
+        </div>
+        <div>
+          <h4>Abril 2026 es el mejor mes histórico en 6 meses</h4>
+          <p>1.124 cursados y $16.2B en monto. El crecimiento es sostenible si se mantiene la calidad de derivación (AI scoring) y se reduce el time-to-contact de Rodrigo. El mes de mayo tiene potencial de superar el 1.200 si se actúan los puntos de bloqueo.</p>
+          <span class="reco">Meta Mayo: 1.200 cursados</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>Relif AI · Reporte Mensual · Comercial · Abril 2026 · Generado automáticamente</footer>
+</div>
+</body>
+</html>
